@@ -6,14 +6,17 @@ body div {
 	background-color: #7cdcf6;
 	text-align: center;
 	border: 2px solid black;
-	border-radius: 5px;
 }
 
 #header {
-	
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: 0px;
 }
 
 #content {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	text-align: left;
 	padding: 5px;
 }
@@ -21,7 +24,11 @@ body div {
 #footer {
 	background-color: #483d8b;
 	border:none;
+}
 
+.nav {
+	border: none;
+	display:inline-block
 }
 
 h1 {
