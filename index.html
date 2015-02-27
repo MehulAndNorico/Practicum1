@@ -11,24 +11,48 @@
 	<body>
 		<div id='header'>
 			<h1>Social Media API's</h1>
-			<div class='nav' id='algemeen'>Algemeen</div>
+			<div class='nav' class='algemeen' id='algemeen'>Algemeen</div>
 			<div class='nav' id='facebook'>Facebook</div>
 			<div class='nav' id='twitter'>Twitter</div>
-			<div class='nav'>Andere</div>
-			<div class='links' id='alg'>Algemeen Algemeen Algemeen</div>
-			<div class='links' id='fb'>Facebook Facebook Facebook</div>
-			<div class='links' id='tw'>Twitter Twitter Twitter</div>
+			<div class='nav'><a href="andere.html">API's van andere social networks<a></div>
+			<div class='links' class='algemeen' id='alg'>
+				<a href="wat.html">Wat?<a>
+				<a href="hoe.html">Hoe?<a>
+				<a href="format.html">Format?<a>
+			</div>
+			<div class='links' id='fb'>
+				<a href="graph.html">Facebook Graph API<a>
+				<a href="voorbeeld.html">Facebook Graph API voorbeelden<a>
+				<a href="overig.html">Overige API's van Facebook<a>
+			</div>
+			<div class='links' id='tw'>
+				<a href="twitter.html">Twitter API('s)?<a>
+			</div>
 
 			<script>
-				$( "#algemeen" ).click(function() {
-					$( "#alg" ).toggle( "drop " );
+				$( "#algemeen" ).mouseenter(function() {
+					$( "#alg" ).toggle( "drop", { duration: 200 } );
 				});
-				$( "#facebook" ).click(function() {
-					$( "#fb" ).toggle( "drop " );
+
+				options = { duration: 100 };
+				$( "#facebook" ).mouseenter(function() {
+					$( "#fb" ).toggle( "drop", { duration: 200 }  );
 				});
-				$( "#twitter" ).click(function() {
+				$( "#twitter" ).mouseenter(function() {
 					$( "#tw" ).toggle( "drop " );
 				});
+
+				/*
+				$( ".algemeen" ).mouseleave(function() {
+					$( "#alg" ).toggle( "drop", { duration: 200 }  );
+				});
+				$( "#facebook" ).mouseleave(function() {
+					$( "#fb" ).toggle( "drop", { duration: 200 }  );
+				});
+				$( "#twitter" ).mouseleave(function() {
+					$( "#tw" ).toggle( "drop " );
+				});
+				*/
 			</script>
 		</div>
 
@@ -42,17 +66,6 @@
 		<div id='footer'>
 			<a href="http://www.students.science.uu.nl/~4255704/WT/opdracht1/index.html">4255704 start</a>
 			<a href="http://www.students.science.uu.nl/~4301358/index.html">4301358 start</a> 
-			<br>
-			<a href="wat.html">Wat?<a>
-			<a href="hoe.html">Hoe?<a>
-			<a href="format.html">Format?<a>
-			<br>
-			<a href="graph.html">Facebook Graph API<a>
-			<a href="voorbeeld.html">Facebook Graph API voorbeelden<a>
-			<a href="overig.html">Overige API's van Facebook<a>
-			<br>
-			<a href="twitter.html">Twitter API('s)/<a>
-			<a href="andere.html">API's van andere social networks<a>
 		</div>
 	</body>
 </html>
