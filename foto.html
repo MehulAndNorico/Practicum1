@@ -17,23 +17,13 @@
 
 		<div id='content'>
 			<script>
-				$(function(){
-					var apiKey = '7ad8590ab0616ef0a15e4ba15d35ff0f';
-
-					$.getJSON('http://api.flickr.com/services/rest/?&amp;method=flickr.photosets.getPhotos&amp;api_key=' + apiKey + '&amp;photoset_id=72157619415192530&amp;format=json&amp;jsoncallback=?', function( data ) {
-
-						$.getJSON( "ajax/test.json", function( data ) {
-							var items = [];
-							$.each( data, function( key, val ) {
-								items.push( "<li id='" + key + "'>" + val + "</li>" );
-							});
-							
-							$( "<ul/>", {
-								"class": "my-new-list",
-								html: items.join( "" )
-							}).appendTo( "body" );
-						});
-				})
+				$.getJSON(
+					'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7ad8590ab0616ef0a15e4ba15d35ff0f&tags=web&format=json', 
+					function( data ) {
+						var items = [];
+						window.alert('Y U NO WORK ');
+						window.alert('Y U NO WORK ' + $data.photo.photo.id[0]);
+				});
 			</script>
 			<input id="tb" type="text" style="width:300px">
 			<img src='http://nl.pcmweb.s3-eu-west-1.amazonaws.com/articles/flickr.jpg'>

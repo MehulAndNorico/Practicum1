@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="jq/jquery-ui.min.css">
 		<script src="jq/external/jquery/jquery.js"></script>
 		<script src="jq/jquery-ui.min.js"></script>
-		<script src="jq/jquery-1.11.2.min.js"></script>
+		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
 	</head>
 	<body>
 		<div id='header'>
@@ -35,32 +35,30 @@
 			</div>
 			<script>
 				$( "#algemeen" ).mouseenter(function() {
-					$( "#alg" ).toggle( "drop", { duration: 200 } );
+					$( "#alg" ).toggle( "drop", { duration: 500 } );
 				});
 				$( "#facebook" ).mouseenter(function() {
-					$( "#fb" ).toggle( "drop", { duration: 200 }  );
+					$( "#fb" ).toggle( "drop", { duration: 500 }  );
 				});
 				$( "#twitter" ).mouseenter(function() {
-					$( "#tw" ).toggle( "drop " );
+					$( "#tw" ).toggle( "drop ", { duration: 500 }  );
 				});
 				$( "#overig" ).mouseenter(function() {
-					$( "#ov" ).toggle( "drop " );
+					$( "#ov" ).toggle( "drop ", { duration: 500 }  );
 				});
 
-				/*
-				$( ".algemeen" ).mouseleave(function() {
-					$( "#alg" ).toggle( "drop", { duration: 200 }  );
+				$( "#algemeen" ).mouseleave(function() {
+					$( "#alg" ).toggle( "drop", { duration: 2000 }  );
 				});
 				$( "#facebook" ).mouseleave(function() {
-					$( "#fb" ).toggle( "drop", { duration: 200 }  );
+					$( "#fb" ).toggle( "drop", { duration: 2000 }  );
 				});
 				$( "#twitter" ).mouseleave(function() {
-					$( "#tw" ).toggle( "drop " );
+					$( "#tw" ).toggle( "drop ", { duration: 2000 }  );
 				});
 				$( "#overig" ).mouseleave(function() {
-					$( "#ov" ).toggle( "drop " );
+					$( "#ov" ).toggle( "drop ", { duration: 2000 }  );
 				});
-				*/
 			</script>
 		</div>
 
