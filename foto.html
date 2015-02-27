@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Overige API's van Facebook</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="jq/jquery-ui.min.css">
+		<script src="jq/external/jquery/jquery.js"></script>
+		<script src="jq/jquery-ui.min.js"></script>
+		<script src="jq/jquery-1.11.2.min.js"></script>
+	</head>
+	<body>
+		<div id='header'>
+			<h2>NOG AANPASSEN</h2>
+			<button>NOG AANPASSEN</button>
+		</div>
+
+		<div id='content'>
+			<script>
+				$(function(){
+					var apiKey = '7ad8590ab0616ef0a15e4ba15d35ff0f';
+
+					$.getJSON('http://api.flickr.com/services/rest/?&amp;method=flickr.photosets.getPhotos&amp;api_key=' + apiKey + '&amp;photoset_id=72157619415192530&amp;format=json&amp;jsoncallback=?', function( data ) {
+
+						$.getJSON( "ajax/test.json", function( data ) {
+							var items = [];
+							$.each( data, function( key, val ) {
+								items.push( "<li id='" + key + "'>" + val + "</li>" );
+							});
+							
+							$( "<ul/>", {
+								"class": "my-new-list",
+								html: items.join( "" )
+							}).appendTo( "body" );
+						});
+				})
+			</script>
+			<input id="tb" type="text" style="width:300px">
+			<img src='http://nl.pcmweb.s3-eu-west-1.amazonaws.com/articles/flickr.jpg'>
+			op
+			<br>
+			<button>Vorige</button>
+			<button>Volgende</button>
+		</div>
+
+		<div id='footer'>
+			<a>NOG AANPASSEN</a>
+		</div>
+	</body>
+</html>

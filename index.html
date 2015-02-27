@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="jq/jquery-ui.min.css">
 		<script src="jq/external/jquery/jquery.js"></script>
 		<script src="jq/jquery-ui.min.js"></script>
+		<script src="jq/jquery-1.11.2.min.js"></script>
 	</head>
 	<body>
 		<div id='header'>
@@ -14,7 +15,7 @@
 			<div class='nav' class='algemeen' id='algemeen'>Algemeen</div>
 			<div class='nav' id='facebook'>Facebook</div>
 			<div class='nav' id='twitter'>Twitter</div>
-			<div class='nav'><a href="andere.html">API's van andere social networks<a></div>
+			<div class='nav' id='overig'>Overig</div>
 			<div class='links' class='algemeen' id='alg'>
 				<a href="wat.html">Wat?<a>
 				<a href="hoe.html">Hoe?<a>
@@ -28,18 +29,22 @@
 			<div class='links' id='tw'>
 				<a href="twitter.html">Twitter API('s)?<a>
 			</div>
-
+			<div class='links' id='ov'>
+				<a href="andere.html">API's van andere social networks</a>
+				<a href='foto.html'>Fotobrowser</a>
+			</div>
 			<script>
 				$( "#algemeen" ).mouseenter(function() {
 					$( "#alg" ).toggle( "drop", { duration: 200 } );
 				});
-
-				options = { duration: 100 };
 				$( "#facebook" ).mouseenter(function() {
 					$( "#fb" ).toggle( "drop", { duration: 200 }  );
 				});
 				$( "#twitter" ).mouseenter(function() {
 					$( "#tw" ).toggle( "drop " );
+				});
+				$( "#overig" ).mouseenter(function() {
+					$( "#ov" ).toggle( "drop " );
 				});
 
 				/*
@@ -51,6 +56,9 @@
 				});
 				$( "#twitter" ).mouseleave(function() {
 					$( "#tw" ).toggle( "drop " );
+				});
+				$( "#overig" ).mouseleave(function() {
+					$( "#ov" ).toggle( "drop " );
 				});
 				*/
 			</script>

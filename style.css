@@ -2,19 +2,21 @@ body {
 	background-color: #483d8b;
 }
 
-body div {
+#header {
 	background-color: #7cdcf6;
 	text-align: center;
 	border: 2px solid black;
-}
 
-#header {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-bottom: 0px;
 }
 
 #content {
+	background-color: #7cdcf6;
+	text-align: center;
+	border: 2px solid black;
+
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	text-align: left;
