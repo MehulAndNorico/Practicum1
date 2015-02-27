@@ -11,10 +11,25 @@
 	<body>
 		<div id='header'>
 			<h1>Social Media API's</h1>
-			<div class='nav'>Algemeen</div>
-			<div class='nav'>Facebook</div>
-			<div class='nav'>Twitter</div>
-			<div class='nav'>Overig</div>
+			<div class='nav' id='algemeen'>Algemeen</div>
+			<div class='nav' id='facebook'>Facebook</div>
+			<div class='nav' id='twitter'>Twitter</div>
+			<div class='nav'>Andere</div>
+			<div class='links' id='alg'>Algemeen Algemeen Algemeen</div>
+			<div class='links' id='fb'>Facebook Facebook Facebook</div>
+			<div class='links' id='tw'>Twitter Twitter Twitter</div>
+
+			<script>
+				$( "#algemeen" ).click(function() {
+					$( "#alg" ).toggle( "drop " );
+				});
+				$( "#facebook" ).click(function() {
+					$( "#fb" ).toggle( "drop " );
+				});
+				$( "#twitter" ).click(function() {
+					$( "#tw" ).toggle( "drop " );
+				});
+			</script>
 		</div>
 
 		<div id='content'>
