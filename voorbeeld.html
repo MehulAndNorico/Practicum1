@@ -1,20 +1,101 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Facebook Graph API voorbeelden</title>
+		<title>Voorbeelden van Social Plugins</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&appId=935331346507637&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
 		<div id='header'>
 			<h2>NOG AANPASSEN</h2>
 			<button>NOG AANPASSEN</button>
 		</div>
 
 		<div id='content'>
-			<p>
-				NOG AANPASSEN
+			<a href="http://www.w3schools.com/html/html_entities.asp">:)</a>
+			<h2>Voorbeelden van Social Plugins</h2>
+			<h3>Javascript SDK</h3>
+			<p>Om social plugins te kunnen gebruiken, heb je de Javascript SDK nodig. Die initialiseer je als volgt:
+			<p class="code">
+				&lt;script&gt;(function(d, s, id) {
+				<br>var js, fjs = d.getElementsByTagName(s)[0];
+				<br>if (d.getElementById(id)) return;
+				<br>js = d.createElement(s); js.id = id;
+				<br>js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&appId=APPID&version=v2.0";
+				<br>fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));&lt;/script&gt;
 			</p>
+			<p>Op de plek van APPID moet je een token invullen die je kunt aanvragen op !!!NOG AANPASSEN!!!</p>
+
+			<h3>Like knop</h3>
+			<div class="fb-like" data-href="http://www.cs.uu.nl/docs/vakken/b2wt/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<p class="code">
+				&lt;div
+				<br>class="fb-like"
+				<br>data-href="http://www.cs.uu.nl/docs/vakken/b2wt/"
+				<br>data-layout="standard"
+				<br>data-action="like"
+				<br>data-show-faces="true"
+				<br>data-share="true"
+				<br>&gt;&lt;/div&gt;
+			</p>
+
+			<div class="fb-like" data-href="http://www.cs.uu.nl/education/" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false"></div>
+			<p class="code">
+				&lt;div
+				<br>class="fb-like"
+				<br><span class="anders">data-href="http://www.cs.uu.nl/education/"</span>
+				<br><span class="anders">data-layout="box_count"</span>
+				<br><span class="anders">data-action="like"</span>
+				<br><span class="anders">data-show-faces="false"</span>
+				<br><span class="anders">data-share="false"</span>
+				<br>&gt;&lt;/div&gt;
+			</p>
+
+			<p>Daarnaast zijn er nog twee layouts: button_count en button.
+			<div class="fb-like" data-href="http://www.cs.uu.nl/education/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+			<div class="fb-like" data-href="http://www.cs.uu.nl/education/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+
+			<h3>Aanbeveel knop</h3>
+			<div class="fb-like" data-href="http://www.cs.uu.nl/education/" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
+			<p class="code">
+				&lt;div
+				<br>class="fb-like"
+				<br>data-href="http://www.cs.uu.nl/education/"
+				<br>data-layout="button"
+				<br><span class="anders">data-action="recommend"</span>
+				<br>data-show-faces="false"
+				<br>data-share="false"
+				<br>&gt;&lt;/div&gt;
+			</p>
+
+			<h3>Deel knop</h3>
+			<div class="fb-share-button" data-href="http://www.cs.uu.nl/education/" data-layout="box_count"></div>
+			<p class="code">
+				&lt;div
+				<br>class="fb-share-button"
+				<br>data-href="http://www.cs.uu.nl/education/"
+				<br>data-layout="box_count"
+				<br>&gt;&lt;/div&gt;
+			</p>
+
+			<p>Van boven naar beneden: button_count, button, icon_link, icon en link</p>
+			<div class="fb-share-button" data-href="http://www.cs.uu.nl/education/" data-layout="button_count"></div>
+			<div class="fb-share-button" data-href="http://www.cs.uu.nl/education/" data-layout="button"></div>
+			<div class="fb-share-button" data-href="http://www.cs.uu.nl/education/" data-layout="icon_link"></div>
+			<div class="fb-share-button" data-href="http://www.cs.uu.nl/education/" data-layout="icon"></div>
+			<div class="fb-share-button" data-href="http://www.cs.uu.nl/education/" data-layout="link"></div>
+
+
 		</div>
 
 		<div id='footer'>

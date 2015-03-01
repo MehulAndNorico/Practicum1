@@ -30,7 +30,7 @@ body {
 
 .nav {
 	border: none;
-	display:inline-block
+	display: inline-block;
 }
 
 .links {
@@ -44,4 +44,13 @@ h1 {
 
 h2 {
 	font-size: 17px;
+}
+
+.code {
+	font-family: "Courier New", Courier, monospace;
+	color: #222222;
+}
+
+.anders {
+	color: #0000F0;
 }

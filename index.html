@@ -12,11 +12,14 @@
 	<body>
 		<div id='header'>
 			<h1>Social Media API's</h1>
-			<div class='nav' class='algemeen' id='algemeen'>Algemeen</div>
-			<div class='nav' id='facebook'>Facebook</div>
-			<div class='nav' id='twitter'>Twitter</div>
-			<div class='nav' id='overig'>Overig</div>
-			<div class='links' class='algemeen' id='alg'>
+			<div id='navbar'>
+				<div class='nav' id='algemeen'>Algemeen</div>
+				<div class='nav' id='facebook'>Facebook</div>
+				<div class='nav' id='twitter'>Twitter</div>
+				<div class='nav' id='overig'>Overig</div>
+			</div>
+
+			<div class='links' id='alg'>
 				<a href="wat.html">Wat?<a>
 				<a href="hoe.html">Hoe?<a>
 				<a href="format.html">Format?<a>
@@ -34,31 +37,36 @@
 				<a href='foto.html'>Fotobrowser</a>
 			</div>
 			<script>
-				$( "#algemeen" ).mouseenter(function() {
-					$( "#alg" ).toggle( "drop", { duration: 500 } );
+				$("#algemeen").mouseenter(function() {
+					$("#alg").toggle("drop", {duration:500});
 				});
-				$( "#facebook" ).mouseenter(function() {
-					$( "#fb" ).toggle( "drop", { duration: 500 }  );
+				$("#facebook").mouseenter(function() {
+					$("#fb").toggle("drop", {duration:500});
 				});
-				$( "#twitter" ).mouseenter(function() {
-					$( "#tw" ).toggle( "drop ", { duration: 500 }  );
+				$("#twitter").mouseenter(function() {
+					$("#tw").toggle("drop", {duration:500});
 				});
-				$( "#overig" ).mouseenter(function() {
-					$( "#ov" ).toggle( "drop ", { duration: 500 }  );
+				$("#overig").mouseenter(function() {
+					$("#ov").toggle("drop", {duration:500});
 				});
 
-				$( "#algemeen" ).mouseleave(function() {
-					$( "#alg" ).toggle( "drop", { duration: 2000 }  );
-				});
-				$( "#facebook" ).mouseleave(function() {
-					$( "#fb" ).toggle( "drop", { duration: 2000 }  );
-				});
-				$( "#twitter" ).mouseleave(function() {
-					$( "#tw" ).toggle( "drop ", { duration: 2000 }  );
-				});
-				$( "#overig" ).mouseleave(function() {
-					$( "#ov" ).toggle( "drop ", { duration: 2000 }  );
-				});
+				$("#algemeen").mouseleave(function() {
+					if (! $("#alg").is(":hover")){
+						$("#alg").toggle("drop", {duration:100, direction:"right"});
+				}});
+				$("#facebook" ).mouseleave(function() {
+					if (! $("#fb").is(":hover")){
+						$("#fb").toggle("drop", {duration:100, direction:"right"});
+				}});
+				$("#twitter").mouseleave(function() {
+					if (! $("#tw").is(":hover")){
+						$("#tw").toggle("drop", {duration:100, direction:"right"});
+				}});
+				$("#overig").mouseleave(function() {
+					if (! $("#ov").is(":hover")){
+						$("#ov").toggle("drop", {duration:100, direction:"right"});
+				}});
+				
 			</script>
 		</div>
 

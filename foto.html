@@ -16,21 +16,106 @@
 		</div>
 
 		<div id='content'>
-			<script>
-				$.getJSON(
-					'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7ad8590ab0616ef0a15e4ba15d35ff0f&tags=web&format=json', 
-					function( data ) {
-						var items = [];
-						window.alert('Y U NO WORK ');
-						window.alert('Y U NO WORK ' + $data.photo.photo.id[0]);
-				});
-			</script>
+			
 			<input id="tb" type="text" style="width:300px">
-			<img src='http://nl.pcmweb.s3-eu-west-1.amazonaws.com/articles/flickr.jpg'>
-			op
+			<div id='fotos'>
+				<img id='image' src='http://nl.pcmweb.s3-eu-west-1.amazonaws.com/articles/flickr.jpg'>
+				op
+			</div>
 			<br>
 			<button>Vorige</button>
 			<button>Volgende</button>
+			<script>
+			debugger;
+
+			(function() {
+				var flickerAPI = "https://api.flickr.com/services/rest/?";
+				$.getJSON( flickerAPI, {
+					method: "flickr.photos.search",
+					api_key: "7ad8590ab0616ef0a15e4ba15d35ff0f",
+					tags: "web",
+					format: "json"
+				})
+				.done(function( data ) {
+					alert("succes");
+					$("#fotos").append("<p>Y U NO WORK</p>");
+					/*
+					$.each( data.items, function( i, item ) {
+						$( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+						if ( i === 3 ) {
+							return false;
+						}
+					});
+					*/
+				});
+			})();
+
+/*
+(function() {
+  var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+    .done(function( data ) {
+      $.each( data.items, function( i, item ) {
+        $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+        if ( i === 3 ) {
+          return false;
+        }
+      });
+    });
+})();
+*/
+
+			/*
+			$.ajax({
+				type: GET,
+				url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7ad8590ab0616ef0a15e4ba15d35ff0f&tags=web&format=json",
+				processData: true,
+				data: {},
+				dataType: "json",
+				success: function(json) {
+					alert("success");
+				},
+				error: function(x,y,z) {
+// x.responseText should have what's wrong
+alert(x.responseText);
+}
+});
+*/
+/*
+			console.log('getting it');
+			var json = $.get("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7ad8590ab0616ef0a15e4ba15d35ff0f&tags=web&format=json", function(result){
+				console.log('got it');
+			});
+*/
+
+    /*
+				$("#fotos").append("<p>Zo werkt het</p>");
+				$.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7ad8590ab0616ef0a15e4ba15d35ff0f&tags=web&format=json")
+					.done(function( data ) {
+						$("#fotos").append("<p>Y U NO WORK2</p>");
+					});
+						//var ids = [];
+						//$.each(data.photos.photo, function(i, foto){
+						//$.each(data, function(i, item){
+							//var url = "http://farm" + foto.farm + ".static.flickr.com/" + foto.server + "/" + foto.id + "_" + foto.secret + "_m.jpg";
+
+							//var imgCont = "<img src='url(" + url + ")'";
+
+							//$("#fotos").append(imgCont);
+							//$("#fotos").append("<p>Y U NO WORK</p>");
+							//jQuery("<p>" + asdf + "</p>").appendTo("#fotos");
+						//}
+						//)
+						//}
+
+						//$("#image").attr("src", "http://i.kinja-img.com/gawker-media/image/upload/s--gnSWo1nI--/japbcvpavbzau9dbuaxf.jpg");
+				//);
+*/
+			</script>
 		</div>
 
 		<div id='footer'>
