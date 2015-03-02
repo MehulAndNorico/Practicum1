@@ -46,14 +46,20 @@
 			<p id="status"></p>
 			<script>
 				update = function() {
+					var modeString;
+					if (mode.selected == "alle"){
+						modeString = "ALL";
+					} else {
+						modeString = "ANY";
+					};
 					var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 					$.getJSON( flickerAPI, {
 						tags: query.value.replace(" ", ","),
-						tagmode: mode.selected,
+						tagmode: modeString,
 						format: "json"
 					})
 					.done(function( data ) {
-						document.getElementById("fotos").interHTML = "";
+						document.getElementById("fotos").innerHTML = "";
 						$.each( data.items, function( i, item ) {
 							$( "<a href='" + item.link + "' target='_blank'><img src='" + item.media.m +"'></a>"  ).appendTo( "#fotos" );
 							if ( i === 50 ) {
