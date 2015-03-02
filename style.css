@@ -49,16 +49,16 @@ h3 {
 
 .kopje {
 	display: inline-block;
-	margin: 0em 0.2em;
+	margin: 0.1em 2em;
 }
 
-.linka {
+.links {
 	width: 100%;
 	font-size: 1.2em;
 	display: none;
 }
 
-.linka a {
+.links a {
 	margin: 0em 0.2em;
 	text-decoration: none;
 }
