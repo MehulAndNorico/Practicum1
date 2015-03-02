@@ -61,8 +61,12 @@
 					.done(function( data ) {
 						document.getElementById("fotos").innerHTML = "";
 						$.each( data.items, function( i, item ) {
-							$( "<a href='" + item.link + "' target='_blank'><img src='" + item.media.m +"'></a>"  ).appendTo( "#fotos" );
-							if ( i === 50 ) {
+							$("<a href='" + item.link + "' target='_blank'>" +
+								item.author.replace("nobody@flickr.com (", "").replace(")", "") + ": " +
+								item.title + 
+								"<br><img src='" + item.media.m +"'></a><br><br>"  )
+							.appendTo( "#fotos" );
+							if ( i === 5 ) {
 								return false;
 							}
 						});

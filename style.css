@@ -87,3 +87,16 @@ h3 {
 #aantal {
 	width: 24ch;
 }
+
+/*
+.fotos a {
+	width:100%;
+	max-width:5em;
+    height:100%;
+    max-height:5em:
+}*/
+
+.fotos img {
+    height: 100%;
+    max-height: 8em:
+}
