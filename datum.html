@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Overige API's van Facebook</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="jq/jquery-ui.min.css">
+		<script src="jq/external/jquery/jquery.js"></script>
+		<script src="jq/jquery-ui.min.js"></script>
+		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
+	</head>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+		/*
+			(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&appId=935331346507637&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));*/
+
+			/*window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '935331346507637',
+					xfbml      : true,
+					version    : 'v2.1'
+				});
+			};
+
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));*/
+		</script>
+
+		<div id='header'>
+			<h2>NOG AANPASSEN</h2>
+			<button>NOG AANPASSEN</button>
+		</div>
+
+		<div id='content'>
+			<p> date: </p>
+			<input id="datepicker">
+			<div id="datepicker"></div>
+			<script>
+					$( "#datepicker" ).datepicker({inline: true});
+
+					var datum = new Date();
+					var vandaag = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + datum.getFullYear();
+					$("#datepicker").val(vandaag);
+
+				$( "#datepicker" ).change(function() {
+					//FB.api('/me', 'get');
+					FB.login(function(){
+						 FB.api('/me/friends?fields=birthday', 
+						 	function (response) {
+							    if (response && !response.error) {
+							        console.log(response);
+							        console.log(response.data.length);
+							    }
+    						});
+						}), {scope: 'manage_friendlists'}
+				});
+
+			</script>
+			<br>
+		</div>
+
+		<div id='footer'>
+			<a>NOG AANPASSEN</a>
+		</div>
+	</body>
+</html>

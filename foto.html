@@ -10,22 +10,13 @@
 		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
 	</head>
 	<body>
+		<div id="fb-root"></div>
 		<div id='header'>
 			<h2>NOG AANPASSEN</h2>
 			<button>NOG AANPASSEN</button>
 		</div>
 
 		<div id='content'>
-			<p> date: </p>
-			<input id="datepicker">
-			<div id="datepicker"></div>
-			<script>
-				$( "#datepicker" ).datepicker({
-					inline: true
-				});
-			</script>
-
-			<input id="tb" type="text" style="width:300px">
 			<div id='fotos'>
 			</div>
 			<script>
@@ -39,7 +30,7 @@
 					.done(function( data ) {
 						$.each( data.items, function( i, item ) {
 							$( "<img>" ).attr( "src", item.media.m ).appendTo( "#fotos" );
-							if ( i === 30 ) {
+							if ( i === 2 ) {
 								return false;
 							}
 						});
