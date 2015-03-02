@@ -48,12 +48,12 @@
 				update = function() {
 					var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 					$.getJSON( flickerAPI, {
-						tags: query.value,
-						//STRINGSPLIT
+						tags: query.value.replace(" ", ","),
 						tagmode: mode.selected,
 						format: "json"
 					})
 					.done(function( data ) {
+						document.getElementById("fotos").interHTML = "";
 						$.each( data.items, function( i, item ) {
 							$( "<a href='" + item.link + "' target='_blank'><img src='" + item.media.m +"'></a>"  ).appendTo( "#fotos" );
 							if ( i === 50 ) {
