@@ -1,0 +1,56 @@
+body {
+	background-color: #483d8b;
+}
+
+#header {
+	background-color: #7cdcf6;
+	text-align: center;
+	border: 2px solid black;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: 0px;
+}
+
+#content {
+	background-color: #7cdcf6;
+	text-align: center;
+	border: 2px solid black;
+
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	text-align: left;
+	padding: 5px;
+}
+
+#footer {
+	background-color: #483d8b;
+	border:none;
+}
+
+.nav {
+	border: none;
+	display: inline-block;
+}
+
+.links {
+	display: none;
+}
+
+h1 {
+	font-size: 20px;
+	margin: 2px;
+}
+
+h2 {
+	font-size: 17px;
+}
+
+.code {
+	font-family: "Courier New", Courier, monospace;
+	color: #222222;
+}
+
+.anders {
+	color: #0000F0;
+}
