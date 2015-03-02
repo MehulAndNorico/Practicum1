@@ -17,21 +17,42 @@
 		</div>
 
 		<div id='content'>
-			<p>Van:</p>
-			<input id="datum1">
-			<div id="datum1"></div>
-			<p>Tot:</p>
-			<input id="datum2">
-			<div id="datum2"></div>
+		<form action="javascript:update()">
+				<label for="query">Zoekterm:</label>
+				<input type="text" id="query" pattern="([a-zA-Z]+)|(([a-zA-Z]+ )+[a-zA-Z]+)" title="Zoekterm(en) gescheiden door een spatie" required>
+					<br><br>
+				<label for="query">Het is mogelijk om meerdere zoektermen op te geven. Plaats er dan een spatie tussen.</label>
+					<br>
+
+			    	<br>
+		    	<label for="aantal">Aantal foto's</label>
+		    	<input id="aantal">
+		    		<br><br>
+		    	<div id="slider"></div>
+			    	<br>
+
+			    	<br>
+				<label for="datum1">Van:</label>
+				<input id="datum1">
+				<div id="datum1"></div>
+					<br><br>
+				<label for="datum2">Tot:</label>
+				<input id="datum2">
+				<div id="datum2"></div>
+					<br>
+
+					<br>
+				<input type="submit">
+			</form>
 			
 			<script>
-				$( "#datum1" ).datepicker({inline: true});
-				$( "#datum2" ).datepicker({inline: true});
+				$( "#datum1" ).datepicker({inline: true, dateFormat: 'yy-mm-dd'});
+				$( "#datum2" ).datepicker({inline: true, dateFormat: 'yy-mm-dd'});
 				var datum = new Date();
-				var vandaag = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + datum.getFullYear();
-				var vroegah = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + (datum.getFullYear() - 10);
-				$("#datum2").val(vandaag);
-				$("#datum1").val(vroegah);
+				var vandaag = datum.getFullYear() + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
+				var vroegah = (datum.getFullYear() - 10) + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
+				$("#datum2").datepicker("setDate", vandaag);
+				$("#datum1").datepicker("setDate", vroegah);
 
 				//$("#datum1").change(function() {});
 
@@ -47,15 +68,21 @@
 					    	$('#search-container').html('<pre>' + str + '</pre>');
 				  	})};*/
 					
-					test = function() {
+					update = function() {
+						console.log($("datum1").val());
+						console.log($("datum2").val());
+						/*var datum1b = $("datum1").datepicker("getDate");
+						var datum1c = datum1b.year + "-" + datum1b.month + "-" + datum1b.day;
+						var datum2b = $("datum2").datepicker("getDate");
+						var datum2c = datum2b.year + "-" + datum2b.month + "-" + datum2b.day;*/
 						var youtubeAPI = "https://www.googleapis.com/youtube/v3/search?";
 						$.getJSON( youtubeAPI, {
-							q: "facebook",
+							q: query.value.replace(" ", "+"),
 							part: "snippet",
 							maxResults: 50,
 							key: "AIzaSyAGa_Kkbli0HlPKgZemR6RlvN5qslR6r0U",
-							publishedAfter: datum1.value,
-							publishedBefore: datum2.value
+							publishedAfter: datum1c,
+							publishedBefore: datum2c
 						})
 						.done(function(data) {
 							console.log(data);
@@ -66,8 +93,6 @@
 						});
 					};
 			</script>
-			<button onclick="test()">Update</button>
-			<br>
 			<div id="fotos"></div>
 		</div>
 
