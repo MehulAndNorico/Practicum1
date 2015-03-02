@@ -17,37 +17,65 @@
 		</div>
 
 		<div id='content'>
-			<div>
-				<select name="query" id="query">
-			      <option>Computer</option>
-			      <option selected="selected">Website</option>
-			      <option>Facebook</option>
-			      <option>Twitter</option>
-			      <option>API</option>
-			    </select>
-			</div>
+			<form action="javascript:update()">
+				<label for="query">Zoekterm:</label>
+				<input type="text" id="query" pattern="([a-zA-Z]+)|(([a-zA-Z]+ )+[a-zA-Z]+)" title="Zoekterm(en) gescheiden door een spatie" required>
+					<br><br>
+				<label for="query">Het is mogelijk om meerdere zoektermen op te geven. Plaats er dan een spatie tussen.</label>
+					<br>
+
+					<br>
+				<label for="mode">Zoeken op </label>
+				<select id="mode">
+			     	<option>één</option>
+			     	<option selected="selected">alle</option>
+			 	</select>
+		    	<label for="mode"> zoektermen</label>
+			    	<br>
+
+			    	<br>
+		    	<label for="aantal">Aantal foto's</label>
+		    	<input id="aantal">
+		    		<br><br>
+		    	<div id="slider"></div>
+			    	<br>
+
+			    	<br>
+			    <input type="submit">
+			</form>
+			<p id="status"></p>
 			<script>
-			update = function() {
-				var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-				$.getJSON( flickerAPI, {
-					tags: query.selected,
-					tagmode: "any",
-					format: "json"
-				})
-				.done(function( data ) {
-					document.getElementById("fotos").innerHTML = "";
-					$.each( data.items, function( i, item ) {
-						$( "<a href='" + item.link + "'><img src='" + item.media.m +"'></a>"  ).appendTo( "#fotos" );
-						if ( i === 10 ) {
-							return false;
-						}
+				update = function() {
+					var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+					$.getJSON( flickerAPI, {
+						tags: query.value,
+						//STRINGSPLIT
+						tagmode: mode.selected,
+						format: "json"
+					})
+					.done(function( data ) {
+						$.each( data.items, function( i, item ) {
+							$( "<a href='" + item.link + "' target='_blank'><img src='" + item.media.m +"'></a>"  ).appendTo( "#fotos" );
+							if ( i === 50 ) {
+								return false;
+							}
+						});
 					});
-				});
-			};
+				};
 
-			$( "#query" ).selectmenu({inline: true, change: function(event, ui){update();}});
-
-			update();
+				$("#mode").selectmenu({inline: true});
+				$("#aantal").spinner({
+					inline: true,
+					min: 3,
+					max: 30,
+					change: function(event, ui){
+						$("slider").slider("option", "value", $("aantal").spinner("value"))
+				}});
+    			$("#slider").slider({
+    				slide: function(event, ui){
+    					$("aantal").spinner("value", $("slider").slider("value"))
+    			}});
+    			$("#aantal").spinner("value", 5);
 			</script>
 			<br>
 			<div id='fotos'></div>
