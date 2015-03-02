@@ -33,11 +33,11 @@
 
 			    	<br>
 				<label for="datum1">Van:</label>
-				<input id="datum1">
+				<input type="text" data-date-format="YYYYY-MM-DD" id="datum1">
 				<div id="datum1"></div>
 					<br><br>
 				<label for="datum2">Tot:</label>
-				<input id="datum2">
+				<input type="text" data-date-format="YYYYY-MM-DD" id="datum2">
 				<div id="datum2"></div>
 					<br>
 
@@ -69,12 +69,17 @@
 				  	})};*/
 					
 					update = function() {
-						console.log($("datum1").val());
-						console.log($("datum2").val());
-						/*var datum1b = $("datum1").datepicker("getDate");
-						var datum1c = datum1b.year + "-" + datum1b.month + "-" + datum1b.day;
-						var datum2b = $("datum2").datepicker("getDate");
-						var datum2c = datum2b.year + "-" + datum2b.month + "-" + datum2b.day;*/
+						var datum1d = $('#myDate').val()
+						var datum1b = $("datum1").datepicker("getDate");
+						//var datum1c = $.datepicker.formatDate( "yy-mm-dd", datum1b );
+						//var datum1c = datum1b.year + "-" + datum1b.month + "-" + datum1b.day;
+						//var datum2b = $("datum2").datepicker("getDate");
+						//var datum2c = datum2b.year + "-" + datum2b.month + "-" + datum2b.day;*/
+						console.log(datum1d);
+						console.log(datum1b);
+						//console.log(datum1c);
+						//console.log(datum2b);
+
 						var youtubeAPI = "https://www.googleapis.com/youtube/v3/search?";
 						$.getJSON( youtubeAPI, {
 							q: query.value.replace(" ", "+"),
