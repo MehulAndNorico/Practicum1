@@ -39,7 +39,7 @@ h3 {
 }
 
 #nav {
-	/*margin: 0.1em 0em;*/
+	padding: 0.2em 0em;
 }
 
 #kopjes {	
@@ -52,13 +52,14 @@ h3 {
 	margin: 0em 0.2em;
 }
 
-.link {
+.linka {
 	width: 100%;
 	font-size: 1.2em;
 	display: none;
 }
 
-.link a {
+.linka a {
+	margin: 0em 0.2em;
 	text-decoration: none;
 }
 
