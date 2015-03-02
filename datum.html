@@ -7,19 +7,34 @@
 		<link rel="stylesheet" href="jq/jquery-ui.min.css">
 		<script src="jq/external/jquery/jquery.js"></script>
 		<script src="jq/jquery-ui.min.js"></script>
+		<script src="flot/jquery.flot.js"></script>
 		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
 	</head>
 	<body>
 		<div id="fb-root"></div>
 		<script>
-		/*
 			(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&appId=935331346507637&version=v2.0";
-			fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));*/
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&appId=935331346507637&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+			function update(){
+				console.log("yay");
+			
+				FB.login(function(){
+				 	FB.api('/me/feed', 
+				 		function (response) {
+					    	if (response && !response.error) {
+					    		console.log(response.data.length);
+					        	console.log(response);      	
+							} else {
+								window.alert("Er is iets misgegaan");
+					}}),
+					{scope: 'read_stream', token: '935331346507637|X7P-il2z98IwlvpZYtWfzLSVtDo'}
+				})};
 
 			/*window.fbAsyncInit = function() {
 				FB.init({
@@ -44,17 +59,42 @@
 		</div>
 
 		<div id='content'>
-			<p> date: </p>
-			<input id="datepicker">
-			<div id="datepicker"></div>
+			<p>Van:</p>
+			<input id="datum1">
+			<div id="datum1"></div>
+			<p>Tot:</p>
+			<input id="datum2">
+			<div id="datum2"></div>
+			
 			<script>
-					$( "#datepicker" ).datepicker({inline: true});
+				$( "#datum1" ).datepicker({inline: true});
+				$( "#datum2" ).datepicker({inline: true});
 
-					var datum = new Date();
-					var vandaag = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + datum.getFullYear();
-					$("#datepicker").val(vandaag);
+				var datum = new Date();
+				var vandaag = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + datum.getFullYear();
+				var vroegah = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + (datum.getFullYear() - 10);
+				$("#datum2").val(vandaag);
+				$("#datum1").val(vroegah);
 
-				$( "#datepicker" ).change(function() {
+
+
+					$(function() {
+
+						var d1 = [];
+						for (var i = 0; i < 14; i += 0.5) {
+							d1.push([i, Math.sin(i)]);
+						}
+
+						var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+						// A null signifies separate line segments
+
+						var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+						$.plot("#grafiek", [ d1, d2, d3 ]);
+					});
+
+				/*$( "#datum1" ).change(function() {
 					//FB.api('/me', 'get');
 					FB.login(function(){
 						 FB.api('/me/friends?fields=birthday', 
@@ -65,10 +105,11 @@
 							    }
     						});
 						}), {scope: 'manage_friendlists'}
-				});
-
+				});*/
 			</script>
+			<button onclick="update()">Update</button>
 			<br>
+			<div id="grafiek"></div>
 		</div>
 
 		<div id='footer'>

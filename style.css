@@ -54,3 +54,8 @@ h2 {
 .anders {
 	color: #0000F0;
 }
+
+#grafiek {
+	width: 500px;
+	height: 500px;
+}
