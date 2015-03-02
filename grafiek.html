@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Overige API's van Facebook</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="jq/jquery-ui.min.css">
+		<script src="jq/external/jquery/jquery.js"></script>
+		<script src="jq/jquery-ui.min.js"></script>
+		<script src="flot/jquery.flot.js"></script>
+		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
+	</head>
+	<body>
+		<div id='header'>
+			<h2>NOG AANPASSEN</h2>
+			<button>NOG AANPASSEN</button>
+		</div>
+
+		<div id='content'>
+			<script>
+				$(function() {
+					var d1 = [];
+					for (var i = 0; i < 14; i += 0.5) {
+						d1.push([i, Math.sin(i)]);
+					}
+
+					var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+					// A null signifies separate line segments
+
+					var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+					$.plot("#grafiek", [ d1, d2, d3 ]);
+				});
+					
+				test = function() {
+					var youtubeAPI = "http://gdata.youtube.com/feeds/api/videos?";
+					$.getJSON( youtubeAPI, {
+						v: 2,
+						alt: "json",
+						maxResults: 50,
+						orderby: "viewCount",
+						q: "facebook"
+					})
+					.done(function( data ) {
+						console.log(data);
+						document.getElementById("footer").innerHTML = "";
+						$.each( feed.entry, function( i, item ) {
+							$( "<a href='" + item.snippet.thumbnails.default.url + "'><img src='" + item.snippet.thumbnails.medium.url +"'></a>"  ).appendTo( "#footer" );
+							if ( i === 10 ) {
+								return false;
+							}
+						});
+					});
+				};
+			</script>
+			<button onclick="test()">Update</button>
+			<br>
+			<div id="grafiek"></div>
+		</div>
+
+		<div id='footer'>
+			<a>NOG AANPASSEN</a>
+		</div>
+	</body>
+</html>

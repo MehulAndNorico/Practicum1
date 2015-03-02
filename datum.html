@@ -9,70 +9,8 @@
 		<script src="jq/jquery-ui.min.js"></script>
 		<script src="flot/jquery.flot.js"></script>
 		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
-		<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 	</head>
 	<body>
-		<div>
-		    <script type="text/javascript">
-		    /*
-				// The client ID is obtained from the Google Developers Console
-				// at https://console.developers.google.com/.
-				// If you run this code from a server other than http://localhost,
-				// you need to register your own client ID.
-				var OAUTH2_CLIENT_ID = '971037064575-lvjqd52i8ue8omf7ub164qqauqmmeb6b.apps.googleusercontent.com';
-				var OAUTH2_SCOPES = ['https://www.googleapis.com/auth/youtube'];
-
-				// Upon loading, the Google APIs JS client automatically invokes this callback.
-				googleApiClientReady = function() {
-				  gapi.auth.init(function() {
-				    window.setTimeout(checkAuth, 1);
-				  });
-				}
-
-				// Attempt the immediate OAuth 2.0 client flow as soon as the page loads.
-				// If the currently logged-in Google Account has previously authorized
-				// the client specified as the OAUTH2_CLIENT_ID, then the authorization
-				// succeeds with no user intervention. Otherwise, it fails and the
-				// user interface that prompts for authorization needs to display.
-				function checkAuth() {
-				  gapi.auth.authorize({
-				    client_id: OAUTH2_CLIENT_ID,
-				    scope: OAUTH2_SCOPES,
-				    immediate: true
-				  }, handleAuthResult);
-				}
-
-				// Handle the result of a gapi.auth.authorize() call.
-				function handleAuthResult(authResult) {
-				  if (authResult && !authResult.error) {
-				    // Authorization was successful. Hide authorization prompts and show
-				    // content that should be visible after authorization succeeds.
-				    $('.pre-auth').hide();
-				    $('.post-auth').show();
-				    loadAPIClientInterfaces();
-				  } else {
-				    // Make the #login-link clickable. Attempt a non-immediate OAuth 2.0
-				    // client flow. The current function is called when that flow completes.
-				    $('#login-link').click(function() {
-				      gapi.auth.authorize({
-				        client_id: OAUTH2_CLIENT_ID,
-				        scope: OAUTH2_SCOPES,
-				        immediate: false
-				        }, handleAuthResult);
-				    });
-				  }
-				}
-
-				// Load the client interfaces for the YouTube Analytics and Data APIs, which
-				// are required to use the Google APIs JS client. More info is available at
-				// http://code.google.com/p/google-api-javascript-client/wiki/GettingStarted#Loading_the_Client
-				function loadAPIClientInterfaces() {
-				  gapi.client.load('youtube', 'v3', function() {
-				    handleAPILoaded();
-				  })};*/
-</script>
-	    </div>
-
 		<div id='header'>
 			<h2>NOG AANPASSEN</h2>
 			<button>NOG AANPASSEN</button>
@@ -89,30 +27,11 @@
 			<script>
 				$( "#datum1" ).datepicker({inline: true});
 				$( "#datum2" ).datepicker({inline: true});
-
 				var datum = new Date();
 				var vandaag = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + datum.getFullYear();
 				var vroegah = (datum.getMonth() + 1) + '/' + datum.getDate() + '/' + (datum.getFullYear() - 10);
 				$("#datum2").val(vandaag);
 				$("#datum1").val(vroegah);
-
-
-
-					$(function() {
-
-						var d1 = [];
-						for (var i = 0; i < 14; i += 0.5) {
-							d1.push([i, Math.sin(i)]);
-						}
-
-						var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
-
-						// A null signifies separate line segments
-
-						var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-
-						$.plot("#grafiek", [ d1, d2, d3 ]);
-					});
 
 				//$("#datum1").change(function() {});
 
@@ -137,23 +56,19 @@
 							key: "AIzaSyAGa_Kkbli0HlPKgZemR6RlvN5qslR6r0U",
 							publishedAfter: datum1.value,
 							publishedBefore: datum2.value
-
 						})
-						.done(function( data ) {
+						.done(function(data) {
 							console.log(data);
 							document.getElementById("footer").innerHTML = "";
 							$.each( data.items, function( i, item ) {
-								$( "<a href='" + item.snippet.thumbnails.default.url + "'><img src='" + item.snippet.thumbnails.medium.url +"'></a>"  ).appendTo( "#footer" );
-								if ( i === 10 ) {
-									return false;
-								}
+								$( "<a href='" + item.snippet.thumbnails.default.url + "'><img src='" + item.snippet.thumbnails.medium.url +"'></a>"  ).appendTo( "#fotos" );
 							});
 						});
 					};
 			</script>
 			<button onclick="test()">Update</button>
 			<br>
-			<div id="grafiek"></div>
+			<div id="fotos"></div>
 		</div>
 
 		<div id='footer'>
