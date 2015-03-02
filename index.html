@@ -19,66 +19,67 @@
 					<div class='kopje' id='twitter'>Twitter</div>
 					<div class='kopje' id='overig'>Overig</div>
 				</div>
-
-				<div class='links' id='alg'>
-					<a href="wat.html">Wat?<a>
-					<a href="hoe.html">Hoe?<a>
-					<a href="format.html">Format?<a>
-				</div>
-				<div class='links' id='fb'>
-					<a href="graph.html">Facebook Graph API<a>
-					<a href="voorbeeld.html">Facebook Graph API voorbeelden<a>
-					<a href="overig.html">Overige API's van Facebook<a>
-				</div>
-				<div class='links' id='tw'>
-					<a href="twitter.html">Twitter API('s)?<a>
-				</div>
-				<div class='links' id='ov'>
-					<a href="andere.html">API's van andere social networks</a>
-					<a href='foto.html'>Fotobrowser</a>
-					<a href='datum.html'>IETS MET DATUM OFZO</a>
+				<div id="container">
+					<div class='links' id='alg'>
+						<a href="wat.html">Wat?</a>
+						<a href="hoe.html">Hoe?</a>
+						<a href="format.html">Format?</a>
+					</div>
+					<div class='links' id='fb'>
+						<a href="graph.html">Facebook Graph API</a>
+						<a href="voorbeeld.html">Facebook Graph API voorbeelden</a>
+						<a href="overig.html">Overige API's van Facebook</a>
+					</div>
+					<div class='links' id='tw'>
+						<a href="twitter.html">Twitter API('s)?</a>
+					</div>
+					<div class='links' id='ov'>
+						<a href="andere.html">API's van andere social networks</a>
+						<a href='foto.html'>Fotobrowser</a>
+						<a href='datum.html'>IETS MET DATUM OFZO</a>
+					</div>
 				</div>
 			</div>
 			<script>
 				$("#algemeen").mouseenter(function() {
-					$( "#fb" ).toggle(false);
-					$( "#tw" ).toggle(false);
-					$( "#ov" ).toggle(false);
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#ov").toggle(false);
 					$("#alg").toggle("drop", {duration:300});
 				});
 				$("#facebook").mouseenter(function() {
-					$( "#alg" ).toggle(false);
-					$( "#tw" ).toggle(false);
-					$( "#ov" ).toggle(false);
+					$("#alg").toggle(false);
+					$("#tw").toggle(false);
+					$("#ov").toggle(false);
 					$("#fb").toggle("drop", {duration:300});
 				});
 				$("#twitter").mouseenter(function() {
-					$( "#alg" ).toggle(false);
-					$( "#fb" ).toggle(false);
-					$( "#ov" ).toggle(false);
+					$("#alg").toggle(false);
+					$("#fb").toggle(false);
+					$("#ov").toggle(false);
 					$("#tw").toggle("drop", {duration:300});
 				});
 				$("#overig").mouseenter(function() {
-					$( "#alg" ).toggle(false);
-					$( "#fb" ).toggle(false);
-					$( "#tw" ).toggle(false);
+					$("#alg").toggle(false);
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
 					$("#ov").toggle("drop", {duration:300});
 				});
 
 				$("#algemeen").mouseleave(function() {
-					if (! $("#alg").is(":hover")){
+					if (!($("#alg").is(":hover"))){
 						$("#alg").toggle("drop", {duration:400, direction:"right"});
 				}});
 				$("#facebook" ).mouseleave(function() {
-					if (! $("#fb").is(":hover")){
+					if (!($("#fb").is(":hover"))){
 						$("#fb").toggle("drop", {duration:400, direction:"right"});
 				}});
 				$("#twitter").mouseleave(function() {
-					if (! $("#tw").is(":hover")){
+					if (!($("#tw").is(":hover"))){
 						$("#tw").toggle("drop", {duration:400, direction:"right"});
 				}});
 				$("#overig").mouseleave(function() {
-					if (! $("#tw").is(":hover")){
+					if (!($("#tw").is(":hover"))){
 						$("#tw").toggle("drop", {duration:400, direction:"right"});
 				}});
 				
