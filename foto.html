@@ -17,27 +17,40 @@
 		</div>
 
 		<div id='content'>
-			<div id='fotos'>
+			<div>
+				<select name="query" id="query">
+			      <option>Computer</option>
+			      <option selected="selected">Website</option>
+			      <option>Facebook</option>
+			      <option>Twitter</option>
+			      <option>API</option>
+			    </select>
 			</div>
 			<script>
-				(function() {
-					var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-					$.getJSON( flickerAPI, {
-						tags: "party",
-						tagmode: "any",
-						format: "json"
-					})
-					.done(function( data ) {
-						$.each( data.items, function( i, item ) {
-							$( "<img>" ).attr( "src", item.media.m ).appendTo( "#fotos" );
-							if ( i === 2 ) {
-								return false;
-							}
-						});
+			update = function() {
+				var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+				$.getJSON( flickerAPI, {
+					tags: query.selected,
+					tagmode: "any",
+					format: "json"
+				})
+				.done(function( data ) {
+					document.getElementById("fotos").innerHTML = "";
+					$.each( data.items, function( i, item ) {
+						$( "<a href='" + item.link + "'><img src='" + item.media.m +"'></a>"  ).appendTo( "#fotos" );
+						if ( i === 10 ) {
+							return false;
+						}
 					});
-				})();
+				});
+			};
+
+			$( "#query" ).selectmenu({inline: true, change: function(event, ui){update();}});
+
+			update();
 			</script>
 			<br>
+			<div id='fotos'></div>
 		</div>
 
 		<div id='footer'>
