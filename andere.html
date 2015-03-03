@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>API's van andere social networks</title>
+		<title>Social Media API's</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="jq/jquery-ui.min.css">
+		<script src="jq/external/jquery/jquery.js"></script>
+		<script src="jq/jquery-ui.min.js"></script>
+		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
 	</head>
 	<body>
 		<div id='header'>
@@ -11,14 +15,142 @@
 			<button>NOG AANPASSEN</button>
 		</div>
 
+
 		<div id='content'>
+			<h2>YouTube API</h2>
 			<p>
-				NOG AANPASSEN
+				<p>De YouTube API bestaat uit drie componenten: YouTube Data API, YouTube Analytics API en de YouTube Live Streaming API. De cominatie van deze drie componenten geeft een gebruiker de mogelijkheid om de gehele YouTube experience aan te bieden op zijn eigen applicatie. Denk hierbij aan zoekfuncties, content creatie, afspelen van video, account management en statistieken over videos. <br>
+				</p>
+				<br><br>
+				<h3>YouTube Data API</h3>
+				<p>De YouTube Data API maakt het mogelijkheid om YouTube functionaliteiten te verwerken in een applicatie. De API kan gebruikt worden om zoekresultaten op te halen en om recources zoals videos of playlists op te te halen, in te voegen, te bewerken en te verwijderen.<sup class="bron" id="1" title="Youtube Data API"><a href="https://developers.google.com/youtube/v3/">[1]</a><br></sup><br><br>
+				 <iframe width="420" height="315" src="https://www.youtube.com/embed/Im69kzhpR3I"></iframe><br><br>
+				Hieronder staan een code fragmenten van hoe je je eigen uploads kan opvragen:
+				</p>
+				<p class=code>
+					package main<br><br>
+
+					import (<br>
+					        "flag"<br>
+					        "fmt"<br>
+					        "log"<br><br>
+
+					        "code.google.com/p/google-api-go-client/youtube/v3"<br>
+					)<br><br>
+
+					func main() {<br>
+					        flag.Parse()<br><br>
+
+					        client, err := buildOAuthHTTPClient(youtube.YoutubeReadonlyScope)
+					        if err != nil {<br>
+					                log.Fatalf("Error building OAuth client: %v", err)<br>
+					        }<br><br>
+
+					        service, err := youtube.New(client)<br>
+					        if err != nil {<br>
+					                log.Fatalf("Error creating YouTube client: %v", err)<br>
+					        }<br><br>
+
+					        // Start making YouTube API calls.<br>
+					        // Call the channels.list method. Set the mine parameter to true to<br>
+					        // retrieve the playlist ID for uploads to the authenticated user's<br>
+					        // channel.<br>
+					        call := service.Channels.List("contentDetails").Mine(true)<br><br>
+
+					        response, err := call.Do()<br>
+					        if err != nil {<br>
+					                // The channels.list method call returned an error.<br>
+					                log.Fatalf("Error making API call to list channels: %v", err.Error())<br>
+					        }<br><br>
+
+					        for _, channel := range response.Items {<br>
+					                playlistId := <br>channel.ContentDetails.RelatedPlaylists.Uploads<br>
+					                // Print the playlist ID for the list of uploaded videos.<br>
+					                fmt.Printf("Videos in list %s\r\n", playlistId)<br>
+
+					                nextPageToken := ""<br>
+					                for {<br>
+					                        // Call the playlistItems.list method to retrieve the<br>
+					                        // list of uploaded videos. Each request retrieves 50<br>
+					                        // videos until all videos have been retrieved.<br>
+					                        playlistCall :=<br> service.PlaylistItems.List("snippet").<br>
+					                                PlaylistId(playlistId).<br>
+					                                MaxResults(50).<br>
+					                                PageToken(nextPageToken)<br><br>
+
+					                        playlistResponse, err := playlistCall.Do()<br><br>
+
+					                        if err != nil {<br>
+					                                // The playlistItems.list method call returned an error.<br>
+					                                log.Fatalf("Error fetching playlist items: %v", err.Error())<br>
+					                        }<br><br>
+
+					                        for _, playlistItem := range playlistResponse.Items<br> {<br>
+					                                title := playlistItem.Snippet.Title<br>
+					                                videoId := playlistItem.Snippet.ResourceId.VideoId<br>
+					                                fmt.Printf("%v, (%v)\r\n", title, videoId)<br>
+					                        }<br><br>
+
+					                        // Set the token to retrieve the next page of results<br>
+					                        // or exit the loop if all results have been retrieved.
+					                        nextPageToken = playlistResponse.NextPageToken<br>
+					                        if nextPageToken == "" {<br>
+					                                break<br>
+					                        }<br>
+					                        fmt.Println()<br>
+					                }
+					        }
+					}
+				</p>
+				<br>
+				<p>Om gebruik te maken van deze code wordt er een request gestuurd:</p>
+				<p class=code>
+					GET {base_URL}/channels?part=contentDetails<br>
+                       &mine=true
+                </p>
+                <br>
+                <p>De respons van deze request bevat het Channel ID en de contentDetails van de gebruiker. Een voorbeeld van een respons is the vinden in het volgende frament</p>
+                <p class=code>
+                	{<br>
+					  "id": {CHANNEL_ID},<br>
+					  "kind": "youtube#channel",<br>
+					  "etag": etag,<br>
+					  "contentDetails": {<br>
+					    "relatedPlaylists": {<br>
+					      "likes": {LIKES_PLAYLIST_ID},<br>
+					      "favorites": {FAVORITES_PLAYLIST_ID},<br>
+					      "uploads": {UPLOADS_PLAYLIST_ID},<br>
+					      "watchHistory": {WATCHHISTORY_PLAYLIST_ID},<br>
+					      "watchLater": {WATCHLATER_PLAYLIST_ID}<br>
+					    },<br>
+					    "googlePlusUserId": string<br>
+					  },
+					}
+				</p>
+				<br><br>
+				<h3>YouTube Analytics API</h3>
+				<p>De YouTube Analytics API stelt een applicatie in staat om kijkcijfers, populariteit metrics en demografische informatie van YouTube videos en kanalen op te halen. Content-eigenaren die deelnemen aan het YouTube-partnerprogramma kunnen de API ook gebruiken om rapporten over Analytics data voor alle YouTube kanalen die gekoppeld zijn aan hun eigen op te halen. De API haalt zijn data uit meerdere bronnen, zoals de YouTube website, mobiele applicaties en embedded players.<sup class="bron" id="2" title="YouTube Analytics API"><a href="https://developers.google.com/youtube/analytics/">[2]</a></sup></p>
+				 <iframe width="420" height="315" src="https://www.youtube.com/embed/WtsS8sEzEeY"></iframe> 
+				<br><br>
+				<h3>YouTube Live Streaming API</h3>
+				<p>De YouTube Live Streaming API biedt de mogelijkheid om live events op Youtube aan te maken, te updaten en te onderhouden. Door gebruik te maken van de API is het mogelijk om bepaalde events (broadcasts) in te plannen en deze te koppelen een videostream.<sup class="bron" id="3" title="YouTube Live Streaming API"><a href="https://developers.google.com/youtube/v3/live/">[3]</a></sup></p>
+				<iframe width="420" height="315" src="https://www.youtube.com/embed/-PU7Ixt5_0s"></iframe>
+				<br><br>
+				
+				<script>
+			$(".bron").each(function(index){
+				if (index == 0){
+					$("<h3>Bronnen</h3>").appendTo("#content");
+				}
+				$("<a href = #" + this.id + ">" + this.title + "</a><br>").appendTo("#content");
+			})
+			</script
+				
 			</p>
 		</div>
 
 		<div id='footer'>
-			<a>NOG AANPASSEN</a>
+			<p>Deze website is gemaakt door Mehul Mistry (4255704) en Norico Groeneveld (4301358)<p>
 		</div>
 	</body>
 </html>
