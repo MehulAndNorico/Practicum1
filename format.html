@@ -1,24 +1,171 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Format (nog aanpassen)</title>
+		<title>Social Media API's</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="jq/jquery-ui.min.css">
+		<script src="jq/external/jquery/jquery.js"></script>
+		<script src="jq/jquery-ui.min.js"></script>
+		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
 	</head>
 	<body>
 		<div id='header'>
-			<h2>NOG AANPASSEN</h2>
-			<button>NOG AANPASSEN</button>
+			<h1>Social Media API's</h1>
+			<div id='nav'>
+				<div id='kopjes'>
+					<div class='kopje' id='algemeen'>Algemeen</div>
+					<div class='kopje' id='facebook'>Facebook</div>
+					<div class='kopje' id='twitter'>Twitter</div>
+					<div class='kopje' id='youtube'>YouTube</div>
+					<div class='kopje' id='flickr'>Flickr</div>
+				</div>
+				<div id="container">
+					<div class='links' id='al'>
+						<a href="index.html">Social Media</a>
+						<a href="hoe.html">API</a>
+						<a href="format.html">Web API</a>
+					</div>
+					<div class='links' id='fb'>
+						<a href="graph.html">Facebook Graph API</a>
+						<a href="voorbeeld.html">Facebook Graph API voorbeelden</a>
+						<a href="overig.html">Overige API's van Facebook</a>
+					</div>
+					<div class='links' id='tw'>
+						<a href="API.html">API</a>
+						<a href="twitter.html">Widgets</a>
+					</div>
+					<div class='links' id='yt'>
+						<a href="andere.html">API's van andere social networks</a>
+						<a href='datum.html'>Demo: video's in periode</a>
+						<a href='grafiek.html'>Demo: video statistieken</a>
+					</div>
+					<div class='links' id='fl'>
+						<a href="andere.html">API's van andere social networks</a>
+						<a href='foto.html'>Demo: fotobrowser</a>
+					</div>
+				</div>
+			</div>
+			<script>
+				$("#algemeen").mouseenter(function() {
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#ov").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle(false);
+					$("#al").toggle("drop", {duration:300});
+				});
+				$("#facebook").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#tw").toggle(false);
+					$("#ov").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle(false);
+					$("#fb").toggle("drop", {duration:300});
+				});
+				$("#twitter").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#fb").toggle(false);
+					$("#ov").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle(false);
+					$("#tw").toggle("drop", {duration:300});
+				});
+				$("#youtube").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#fl").toggle(false);
+					$("#yt").toggle("drop", {duration:300});
+				});
+				$("#flickr").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle("drop", {duration:300});
+				});
+
+				$("#algemeen").mouseleave(function() {
+					if (!($("#al").is(":hover"))){
+						$("#al").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#facebook" ).mouseleave(function() {
+					if (!($("#fb").is(":hover"))){
+						$("#fb").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#twitter").mouseleave(function() {
+					if (!($("#tw").is(":hover"))){
+						$("#tw").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#youtube").mouseleave(function() {
+					if (!($("#yt").is(":hover"))){
+						$("#yt").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#flickr").mouseleave(function() {
+					if (!($("#fl").is(":hover"))){
+						$("#fl").toggle("drop", {duration:400, direction:"right"});
+				}});
+				
+			</script>
 		</div>
 
 		<div id='content'>
+			<h2>Web API</h2>
 			<p>
-				NOG AANPASSEN
+				Web API is een framework die het gemakkelijk maakt om een HTTP service voor vele clients, incusief browsers en mobiele aparaten, te bouwen. Met de Web API Content Negotiation (zie 2.2) zijn we in staat om op basis van request van de client data terug te sturen. Dit houdt in dat als een client data in de vorm van JSON of XML opvraagt de Web API framework het request type behandelt en aan de hand hiervan de data in de juiste vorm terugstuurt op basis van het media type. De standaard ingestelde respons van de Web API wordt gegeven in de vorm van JSON en XML.
+				<br>
+				Web API is een ideaal platform voor het bouwen van HTTP based services, waarbij request en respons gebeurd aan de hand van het HTTP protocol. De client kan GET, PUT, POST en DELETE requests maken en de Web API zal hierop een adequate respons geven.<sup><a href="http://www.codeproject.com/Articles/549152/Introduction-to-ASP-NET-Web-API">[1]</a></sup>
+				<br><br>
+				<h3>Web API architectuur</h3>
+				Web API kan op twee manieren gehost worden. Je kan een web API hosten in ASP.NET of je kan ervoor kiezern om het zelf te hosten via een console of Windows service. Hieronder kunnen de verschillen in architectuur gevonden worden.
+				<br>
+				<img src="Foto/asp.jpg"><img src="Foto/self.jpg">
+				<br>
+				De manier van routing is in Web API is net wat anders dan ASP.NET MVC routing. De Web API maakt gebruik van HttpRouteCollection en Route. Het Web API team heeft de routing logic van MVC hergebruikt in web API. De enige reden dat er een verschil in routing tussen de twee gevallen is was om te voorkomen dat Web API afhankelijk werd van ASP.NET routing. Hierdoor is Web API onafhankelijk van ASP.NET class dependencies en is self-hosting via een console of Windows service mogelijk.
+				<br>
+				Het grootste verschil is dat bij Web API er geen toegang is tot de routing data in de Message Handlers, dit komt doordat het bepalen van de route op een later punt in de cyclus gebeurd dan bij ASP.NET MVC Routing.<sup><a href="http://www.codeproject.com/Articles/549152/Introduction-to-ASP-NET-Web-API">[1]</a></sup>
+				<br><br>
+				<h3>Wat is Content Negotioton in Web API?</h3>
+				Content Negotiation is het proces waarbij de beste representatie voor een respons, waar meerdere weergaves voor mogelijk zijn, wordt uitgekozen. Het onderliggende Web API framework implementeert Content Negotiation en hierdoor is het mogelijk voor een client om data van een specifiek media type op te vragen. Web API stuurt meestal zijn respons in JSON formaat, maar tijdens het opvragen van een bron kan een client meesturen in wat voor media type de respons gestuurd moet worden, hierdoor kan de Web API weten wat er gevraagd wordt en de juiste weergave als output voor de data geven.<sup><a href="http://www.codeproject.com/Articles/549152/Introduction-to-ASP-NET-Web-API">[1]</a></sup>
+				<br>
+				<img src="Foto/cn.jpg">
+				<br><br>
+				<h3>Hoe kan je Web API hosten?</h3>
+				Je kan kiezen voor web hosting of voor self-hosting. Hieronder is een code fragment te vinden waarmee je een self-hosting Web API kan aanmaken.
+				(In het onderstaande fragment wordt er gehost via de specifieke URL  localhost 8080, om deze te gebruiken heb je administrator rechten nodig)<sup><a href="http://www.codeproject.com/Articles/549152/Introduction-to-ASP-NET-Web-API">[1]</a></sup>
+				<br><br>
+				<span>
+					using System.Web.Http;<br>
+					using System.Web.Http.SelfHost;<br>      
+	 
+					var config = new HttpSelfHostConfiguration("http://localhost:8080");<br>
+	 
+					config.Routes.MapHttpRoute(
+	   			 	"API Default", "api/{controller}/{id}", 
+	    			new { id = RouteParameter.Optional });<br>
+	 
+					using (HttpSelfHostServer server = new HttpSelfHostServer(config))<br>
+					{<br>
+	  				  server.OpenAsync().Wait();<br>
+	    			  Console.WriteLine("Press Enter to quit.");<br>
+	    			  Console.ReadLine();<br>
+					}
+				</span>
+				<br><br>
+				<h3>XML vs JSON</h3>
+				Extensible Markup Language (XML) is een opmaaktaal die een set regels voor het coderen van documenten in een leesbare manier voor zowel mensen als machines defineert. Het doel van XML was om voor simpliciteit, generalisatie en useability te zorgen.<sup><a href="http://en.wikipedia.org/wiki/XML">[2]</a></sup><br>
+				JSON of JavaScript Object Notation is een open standard format dat leesbare tekst gebruikt om om data objecten, die bestaan uit attributen en waarden, te verzenden. Het wordt voornamelijk gebruikt om data tussen een server een een web applicatie te verzenden, en geldt als een alternatief voor XML.<sup><a href="http://en.wikipedia.org/wiki/JSON">[3]</a></sup><br><br>
+				XML en JSON zijn beide ontworpen om voor een simpele standaardisatie van verschillende hiargische datastructuren en de manier waarop deze verstuurd worden te zorgen. Toch zijn er verschillen tussen de twee formaten. Een van de duidelijkste verschillen is de syntax, dit illustreren we aan de hand van het volgende voorbeeld.<sup><a href="http://www.developingthefuture.net/difference-between-json-and-xml/">[4]</a></sup><br>
+				<br><br>
+				<img src="Foto/xml.jpg"><img src="Foto/json.jpg">
+				<br><br>
+				Beide fragmenten geven hetzelfde resultaat, maar er is duidelijk een andere manier van coderen te onderscheiden. XML is duidelijk makkelijker te begrijpen voor mensen, hierdoor wordt het vaak gebruik voor configuratie bestanden. JSON aan de andere kant is moeilijker te begrijpen voor de mens, maar is wel fijner voor machines.<br>
+				Verder is XML een opmaaktaal en is het dus geschikt voor document beschrijvingen, de hierarchische elementen kunnen ook attributen hebben die niet aanwezig zijn in JSON. JSON heeft echter een beknoptere syntax voor het definieren van lijsten van elementen, waardoor deze geschikter is voor tekstopmaak serialisatie.<sup><a href="http://www.developingthefuture.net/difference-between-json-and-xml/">[4]</a></sup>
 			</p>
 		</div>
 
 		<div id='footer'>
-			<a>NOG AANPASSEN</a>
-		</div>
+			<p>Deze website is gemaakt door Mehul Mistry (4255704) en Norico Groeneveld (4301358)<p>
 	</body>
 </html>

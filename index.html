@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="jq/jquery-ui.min.css">
 		<script src="jq/external/jquery/jquery.js"></script>
 		<script src="jq/jquery-ui.min.js"></script>
+		<script src="flot/jquery.flot.js"></script>
 		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
 	</head>
 	<body>
@@ -22,9 +23,9 @@
 				</div>
 				<div id="container">
 					<div class='links' id='al'>
-						<a href="wat.html">Wat?</a>
-						<a href="hoe.html">Hoe?</a>
-						<a href="format.html">Format?</a>
+						<a href="index.html">Social Media</a>
+						<a href="hoe.html">API</a>
+						<a href="format.html">Web API</a>
 					</div>
 					<div class='links' id='fb'>
 						<a href="graph.html">Facebook Graph API</a>
@@ -32,7 +33,8 @@
 						<a href="overig.html">Overige API's van Facebook</a>
 					</div>
 					<div class='links' id='tw'>
-						<a href="twitter.html">Twitter API('s)?</a>
+						<a href="API.html">API</a>
+						<a href="twitter.html">Widgets</a>
 					</div>
 					<div class='links' id='yt'>
 						<a href="andere.html">API's van andere social networks</a>
@@ -110,9 +112,8 @@
 		</div>
 
 		<div id='content'>
-			<h2>Lorem Ipsum</h2>
-			<h3>h3</h3>
-			<p> date: </p>
+			<h2>Social Media</h2>
+			<p> Date: </p>
 			<input id="datepicker">
 			<div id="datepicker"></div>
 			<script>
@@ -122,8 +123,33 @@
 			</script>
 
 			<p>
-				Lorem ipsum dolor. Sit amet proin bibendum pharetra ultrices. Metus eget ultrices. Sit scelerisque vestibulum justo eleifend auctor. Vivamus tempus consequat pretium lorem libero qui in dapibus mauris massa pellentesque. In magna nam. In sollicitudin id arcu aenean metus massa arcu lacus. Pharetra urna vulputate et dolor vestibulum porttitor at morbi. Vel quia nonummy. Eu massa turpis. Vestibulum sit ut. Nunc morbi massa. A est vehicula ligula ut facilisis. Varius ipsum consequatur. Velit ante neque erat vitae felis nulla vel at ut vestibulum non sed eros pellentesque facere maecenas habitasse placerat viverra sit. Ultrices tellus etiam. Massa ut ad. Enim ipsum diam. Pulvinar lacus consectetuer ullamcorper turpis suscipit sed nonummy vitae suspendisse imperdiet vestibulum. Vel per pede ornare venenatis wisi.
-			</p>		
+				Deze website gaat over de API’s van Social Media, voordat we het over deze specificatie gaan hebben wordt eerst het begrip Social Media besproken
+				In de afgelopen decennia is het ineternet een steeds belangrijkere rol gaan spelen in onze maatschappij. Het internet is een medium voor interactie geworden. Om te communiceren via het internet wordt er gebruik gemaakt van zogenoemde sociale media. Sociale media is de overkoepelende term voor online diensten en/of platformen waar de gebruikers de inhoud – user generated content – bepalen en verspreiden. Zo delen gebruikers informatie, ervaringen en kennis op basis van tekst, afbeeldingen, audio en video. Er is sprake van interactie tussen de gebruikers van de sociale media.
+				Vooral in Nederland is het gebruik van sociale media erg groot.  Ongeveer zeven op de tien Nederlandse internetgebruikers van 12 jaar en ouder maakten in 2012 gebruik van sociale media, hierdoor behoort Nederland tot de Europese top van sociale-mediagebruik.<sup> <a href="http://www.cbs.nl/NR/rdonlyres/06A12225-495E-4620-80F6-F2A53E819957/0/20131001b15art.pdf">[1]</a> </sup>
+				<br><br>
+				<img src="Foto/NLinEU.jpg" alt="NL in EU">
+				<br><br>
+				<h3>Populaire Social Media</h3>
+				Er zijn vele soorten sociale media, waarvan sommige van veel bekendheid genieten, en andere van minder. De onbekende sociale media zijn niet zo interessant om op je website te verwerken aangezien toch bijna niemand een account voor dat sociale medium zal hebben. Om deze reden hebben wij op onze website de focus gelegd op twee van de grootste sociale media netwerken: Facebook en Twitter<sup><a href="http://thenextnetwork.com/de-tien-grootste-sociale-media-van-de-hele-wereld/">[2]</a></sup> (verder zijn er ook elementen van Youtube en Flickr te vinden).
+				<br><br>
+				<script>
+				$(function() {
+					var d1 = [];
+					for (var i = 2010; i < 2014; i += 1) {
+						d1.push([i, Math.sin(i)]);
+					}
+
+					var d2 = [[2010, 9], [2011, 42], [2012, 58], [2013, 37], [2014, 22]]; 	<!-- Twitter -->
+					var d3 = [[2010, 1], [2011, 4], [2012, 6], [2013, 9], [2014, 13]];			<!-- Facebook -->
+					var d4 = [[2010, 1], [2011, 16], [2012, 14], [2013, 13], [2014, 24]];			<!-- LinkedIn -->
+
+
+					$.plot("#grafiek", [d2, d3, d4]);
+				});
+			</script>
+			<img src="Foto/Tabel.jpg" alt="NL in EU"> <div id="grafiek"></div> 
+
+			</p>			
 		</div>
 
 		<div id='footer'>
