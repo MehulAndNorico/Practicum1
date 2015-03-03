@@ -46,13 +46,27 @@
 			</form>
 			
 			<script>
-				$( "#datum1" ).datepicker({inline: true, dateFormat: 'yy-mm-dd'});
-				$( "#datum2" ).datepicker({inline: true, dateFormat: 'yy-mm-dd'});
 				var datum = new Date();
-				var vandaag = datum.getFullYear() + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
-				var vroegah = (datum.getFullYear() - 10) + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
-				$("#datum2").datepicker("setDate", vandaag);
-				$("#datum1").datepicker("setDate", vroegah);
+				var datum1b = (datum.getFullYear() - 10) + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
+				var datum2b = datum.getFullYear() + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
+
+				$( "#datum1" ).datepicker({
+					inline: true,
+					dateFormat: 'yy-mm-dd',
+					onSelect: function(dateText, inst){
+						datum1b = dateText;
+				}});
+				$( "#datum2" ).datepicker({
+					inline: true,
+					dateFormat: 'yy-mm-dd',
+					onSelect: function(dateText, inst){
+						datum2b = dateText;
+						console.log(dateText);
+				}});
+	
+				$("#datum1").datepicker("setDate", datum1b);
+				$("#datum2").datepicker("setDate", datum2b);
+				
 
 				//$("#datum1").change(function() {});
 
@@ -69,29 +83,18 @@
 				  	})};*/
 					
 					update = function() {
-						var datum1d = $('#myDate').val()
-						var datum1b = $("datum1").datepicker("getDate");
-						//var datum1c = $.datepicker.formatDate( "yy-mm-dd", datum1b );
-						//var datum1c = datum1b.year + "-" + datum1b.month + "-" + datum1b.day;
-						//var datum2b = $("datum2").datepicker("getDate");
-						//var datum2c = datum2b.year + "-" + datum2b.month + "-" + datum2b.day;*/
-						console.log(datum1d);
-						console.log(datum1b);
-						//console.log(datum1c);
-						//console.log(datum2b);
-
 						var youtubeAPI = "https://www.googleapis.com/youtube/v3/search?";
 						$.getJSON( youtubeAPI, {
 							q: query.value.replace(" ", "+"),
 							part: "snippet",
 							maxResults: 50,
 							key: "AIzaSyAGa_Kkbli0HlPKgZemR6RlvN5qslR6r0U",
-							publishedAfter: datum1c,
-							publishedBefore: datum2c
+							publishedAfter: (datum1b + "T00:00:00Z"),
+							publishedBefore: (datum2b + "T00:00:00Z")
 						})
 						.done(function(data) {
 							console.log(data);
-							document.getElementById("footer").innerHTML = "";
+							document.getElementById("fotos").innerHTML = "";
 							$.each( data.items, function( i, item ) {
 								$( "<a href='" + item.snippet.thumbnails.default.url + "'><img src='" + item.snippet.thumbnails.medium.url +"'></a>"  ).appendTo( "#fotos" );
 							});

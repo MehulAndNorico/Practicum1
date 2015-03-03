@@ -113,43 +113,38 @@
 
 		<div id='content'>
 			<h2>Social Media</h2>
-			<p> Date: </p>
-			<input id="datepicker">
-			<div id="datepicker"></div>
-			<script>
-				$( "#datepicker" ).datepicker({
-					inline: true
-				});
-			</script>
-
 			<p>
 				Deze website gaat over de API’s van Social Media, voordat we het over deze specificatie gaan hebben wordt eerst het begrip Social Media besproken
 				In de afgelopen decennia is het ineternet een steeds belangrijkere rol gaan spelen in onze maatschappij. Het internet is een medium voor interactie geworden. Om te communiceren via het internet wordt er gebruik gemaakt van zogenoemde sociale media. Sociale media is de overkoepelende term voor online diensten en/of platformen waar de gebruikers de inhoud – user generated content – bepalen en verspreiden. Zo delen gebruikers informatie, ervaringen en kennis op basis van tekst, afbeeldingen, audio en video. Er is sprake van interactie tussen de gebruikers van de sociale media.
-				Vooral in Nederland is het gebruik van sociale media erg groot.  Ongeveer zeven op de tien Nederlandse internetgebruikers van 12 jaar en ouder maakten in 2012 gebruik van sociale media, hierdoor behoort Nederland tot de Europese top van sociale-mediagebruik.<sup> <a href="http://www.cbs.nl/NR/rdonlyres/06A12225-495E-4620-80F6-F2A53E819957/0/20131001b15art.pdf">[1]</a> </sup>
-				<br><br>
-				<img src="Foto/NLinEU.jpg" alt="NL in EU">
-				<br><br>
-				<h3>Populaire Social Media</h3>
-				Er zijn vele soorten sociale media, waarvan sommige van veel bekendheid genieten, en andere van minder. De onbekende sociale media zijn niet zo interessant om op je website te verwerken aangezien toch bijna niemand een account voor dat sociale medium zal hebben. Om deze reden hebben wij op onze website de focus gelegd op twee van de grootste sociale media netwerken: Facebook en Twitter<sup><a href="http://thenextnetwork.com/de-tien-grootste-sociale-media-van-de-hele-wereld/">[2]</a></sup> (verder zijn er ook elementen van Youtube en Flickr te vinden).
-				<br><br>
-				<script>
+				Vooral in Nederland is het gebruik van sociale media erg groot.  Ongeveer zeven op de tien Nederlandse internetgebruikers van 12 jaar en ouder maakten in 2012 gebruik van sociale media, hierdoor behoort Nederland tot de Europese top van sociale-mediagebruik.<sup class="bron" id="1" title="CBS social media onderzoek"><a href="http://www.cbs.nl/NR/rdonlyres/06A12225-495E-4620-80F6-F2A53E819957/0/20131001b15art.pdf">[1]</a></sup>
+			</p>
+			<img src="Foto/NLinEU.jpg" alt="NL in EU">
+			<br><br>
+			<h3>Populaire Social Media</h3>
+			<p>
+				Er zijn vele soorten sociale media, waarvan sommige van veel bekendheid genieten, en andere van minder. De onbekende sociale media zijn niet zo interessant om op je website te verwerken aangezien toch bijna niemand een account voor dat sociale medium zal hebben. Om deze reden hebben wij op onze website de focus gelegd op twee van de grootste sociale media netwerken: Facebook en Twitter<sup class="bron" id="2" title="Grootste social media"><a href="http://thenextnetwork.com/de-tien-grootste-sociale-media-van-de-hele-wereld/">[2]</a></sup>. Daarnaast behandelen we ook Youtube en Flickr.
+			</p>
+			<script>
 				$(function() {
-					var d1 = [];
-					for (var i = 2010; i < 2014; i += 1) {
-						d1.push([i, Math.sin(i)]);
-					}
-
-					var d2 = [[2010, 9], [2011, 42], [2012, 58], [2013, 37], [2014, 22]]; 	<!-- Twitter -->
-					var d3 = [[2010, 1], [2011, 4], [2012, 6], [2013, 9], [2014, 13]];			<!-- Facebook -->
-					var d4 = [[2010, 1], [2011, 16], [2012, 14], [2013, 13], [2014, 24]];			<!-- LinkedIn -->
+					var d1 = [[2010, 9], [2011, 42], [2012, 58], [2013, 37], [2014, 22]]; 	<!-- Twitter -->
+					var d2 = [[2010, 1], [2011, 4], [2012, 6], [2013, 9], [2014, 13]];			<!-- Facebook -->
+					var d3 = [[2010, 1], [2011, 16], [2012, 14], [2013, 13], [2014, 24]];			<!-- LinkedIn -->
 
 
-					$.plot("#grafiek", [d2, d3, d4]);
+					$.plot("#grafiek", [d1, d2, d3]);
 				});
 			</script>
 			<img src="Foto/Tabel.jpg" alt="NL in EU"> <div id="grafiek"></div> 
+			<p>Deze grafiek laat de verandering van het gemiddeld aantal shares per artikel over de tijd zien. De gele lijn is van Twitter, De rode lijn is van LinkedIn en de blauwe lijn is van Facebook</p>
 
-			</p>			
+			<script>
+			$(".bron").each(function(index){
+				if (index == 0){
+					$("<h3>Bronnen</h3>").appendTo("#content");
+				}
+				$("<a href = #" + this.id + ">" + this.title + "</a><br>").appendTo("#content");
+			})
+			</script			
 		</div>
 
 		<div id='footer'>

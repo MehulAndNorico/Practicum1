@@ -55,7 +55,8 @@ h3 {
 
 .kopje {
 	display: inline-block;
-	margin: 0em 2em;
+	padding: 0em 1em;
+	margin: 0em 1em;
 }
 
 .links {
@@ -65,7 +66,7 @@ h3 {
 }
 
 .links a {
-	margin: 0em 0.2em;
+	margin: 0em 0.5em;
 	text-decoration: none;
 	color: black;
 }
@@ -86,21 +87,18 @@ h3 {
 }
 
 #mode {
-	width: 12ch;
+	width: 15ch;
 	display: inline-block;
 }
 
 #aantal {
-	width: 24ch;
+	width: 10ch;
 }
 
-/*
+
 .fotos a {
-	width:100%;
-	max-width:5em;
-    height:100%;
-    max-height:5em:
-}*/
+	text-decoration: none;
+}
 
 .fotos img {
     height: 100%;

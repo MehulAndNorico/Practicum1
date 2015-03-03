@@ -36,11 +36,9 @@
 			    	<br>
 		    	<label for="aantal">Aantal foto's</label>
 		    	<input id="aantal">
-		    		<br><br>
-		    	<div id="slider"></div>
-			    	<br>
+		    		<br>
 
-			    	<br>
+		    		<br>
 			    <input type="submit">
 			</form>
 			<p id="status"></p>
@@ -77,14 +75,8 @@
 				$("#aantal").spinner({
 					inline: true,
 					min: 3,
-					max: 30,
-					change: function(event, ui){
-						$("slider").slider("option", "value", $("aantal").spinner("value"))
-				}});
-    			$("#slider").slider({
-    				slide: function(event, ui){
-    					$("aantal").spinner("value", $("slider").slider("value"))
-    			}});
+					max: 30
+				});
     			$("#aantal").spinner("value", 5);
 			</script>
 			<br>
