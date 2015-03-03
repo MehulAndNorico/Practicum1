@@ -81,9 +81,11 @@ h3 {
 .anders {
 	color: #0000F0;
 }
-#grafiek {
-	width: 500px;
-	height: 500px;
+
+.grafiek {
+	width: 100%;
+	max-width: 40em;
+	height: 20em;
 }
 
 #mode {
@@ -96,11 +98,20 @@ h3 {
 }
 
 
-.fotos a {
+#fotos a {
 	text-decoration: none;
 }
 
-.fotos img {
+#fotos img {
     height: 100%;
     max-height: 8em:
+}
+
+#thumbnails a {
+	text-decoration: none;
+}
+
+#thumbnails img {
+    height: 100%;
+    max-height: 5em:
 }

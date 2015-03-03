@@ -25,10 +25,8 @@
 					<br>
 
 			    	<br>
-		    	<label for="aantal">Aantal foto's</label>
+		    	<label for="aantal">Aantal video's</label>
 		    	<input id="aantal">
-		    		<br><br>
-		    	<div id="slider"></div>
 			    	<br>
 
 			    	<br>
@@ -46,6 +44,13 @@
 			</form>
 			
 			<script>
+				$("#aantal").spinner({
+					inline: true,
+					min: 1,
+					max: 50
+				});
+    			$("#aantal").spinner("value", 10);
+
 				var datum = new Date();
 				var datum1b = (datum.getFullYear() - 10) + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
 				var datum2b = datum.getFullYear() + '-' + datum.getDate() + '-' + (datum.getMonth() + 1);
@@ -66,42 +71,35 @@
 	
 				$("#datum1").datepicker("setDate", datum1b);
 				$("#datum2").datepicker("setDate", datum2b);
-				
-
-				//$("#datum1").change(function() {});
-
-					/*function test(){
-					  	var request = gapi.client.youtube.search.list({
-					    	q: "test",
-					    	part: 'snippet'
-					  	});
-
-					  	request.execute(function(response) {
-					    	var str = JSON.stringify(response.result);
-					    	console.log(str);
-					    	$('#search-container').html('<pre>' + str + '</pre>');
-				  	})};*/
-					
-					update = function() {
-						var youtubeAPI = "https://www.googleapis.com/youtube/v3/search?";
-						$.getJSON( youtubeAPI, {
-							q: query.value.replace(" ", "+"),
-							part: "snippet",
-							maxResults: 50,
-							key: "AIzaSyAGa_Kkbli0HlPKgZemR6RlvN5qslR6r0U",
-							publishedAfter: (datum1b + "T00:00:00Z"),
-							publishedBefore: (datum2b + "T00:00:00Z")
-						})
-						.done(function(data) {
-							console.log(data);
-							document.getElementById("fotos").innerHTML = "";
-							$.each( data.items, function( i, item ) {
-								$( "<a href='" + item.snippet.thumbnails.default.url + "'><img src='" + item.snippet.thumbnails.medium.url +"'></a>"  ).appendTo( "#fotos" );
-							});
+									
+				update = function() {
+					var aantal = $("aantal").spinner("value");
+					var na = datum1b + "T00:00:00Z";
+					var voor = datum2b + "T00:00:00Z"
+					var youtubeAPI = "https://www.googleapis.com/youtube/v3/search?";
+					$.getJSON( youtubeAPI, {
+						q: query.value.replace(" ", "+"),
+						part: "snippet",
+						//maxResults: aantal,
+						key: "AIzaSyAGa_Kkbli0HlPKgZemR6RlvN5qslR6r0U",
+						publishedAfter: na,
+						publishedBefore: voor
+					})
+					.done(function(data) {
+						document.getElementById("thumbnails").innerHTML = "";
+						$.each( data.items, function( i, item ) {
+							$(
+								"<a href='" + item.snippet.thumbnails.default.url + "'>" +
+								item.snippet.channelTitle + ": " +
+								item.snippet.title +
+								"<br><img src='" + item.snippet.thumbnails.medium.url +
+								"'></a><br>"
+							).appendTo("#thumbnails");
 						});
-					};
+					});
+				};
 			</script>
-			<div id="fotos"></div>
+			<div id="thumbnails"></div>
 		</div>
 
 		<div id='footer'>

@@ -43,7 +43,17 @@
 			</form>
 			<p id="status"></p>
 			<script>
+				$("#mode").selectmenu({inline: true});
+				$("#aantal").spinner({
+					inline: true,
+					min: 3,
+					max: 30
+				});
+    			$("#aantal").spinner("value", 5);
+
 				update = function() {
+					console.log(mode);
+					console.log($("#mode").selectmenu("value"));
 					var modeString;
 					if (mode.selected == "alle"){
 						modeString = "ALL";
@@ -59,25 +69,18 @@
 					.done(function( data ) {
 						document.getElementById("fotos").innerHTML = "";
 						$.each( data.items, function( i, item ) {
-							$("<a href='" + item.link + "' target='_blank'>" +
+							$(
+								"<a href='" + item.link + "' target='_blank'>" +
 								item.author.replace("nobody@flickr.com (", "").replace(")", "") + ": " +
 								item.title + 
-								"<br><img src='" + item.media.m +"'></a><br><br>"  )
-							.appendTo( "#fotos" );
+								"<br><img src='" + item.media.m +"'></a><br><br>"
+							).appendTo( "#fotos" );
 							if ( i === 5 ) {
 								return false;
 							}
 						});
 					});
 				};
-
-				$("#mode").selectmenu({inline: true});
-				$("#aantal").spinner({
-					inline: true,
-					min: 3,
-					max: 30
-				});
-    			$("#aantal").spinner("value", 5);
 			</script>
 			<br>
 			<div id='fotos'></div>

@@ -17,10 +17,34 @@
 		</div>
 
 		<div id='content'>
+			<form action="javascript:plot()">
+				<label for="query">Zoekterm:</label>
+				<input type="text" id="query" pattern="([a-zA-Z]+)|(([a-zA-Z]+ )+[a-zA-Z]+)" title="Zoekterm(en) gescheiden door een spatie" required>
+					<br><br>
+				<label for="query">Het is mogelijk om meerdere zoektermen op te geven. Plaats er dan een spatie tussen.</label>
+					<br>
+
+			    	<br>
+		    	<label for="nummer">Plotten op grafiek</label>
+				<select id="nummer">
+			     	<option selected="selected">1</option>
+			     	<option>2</option>
+			 	</select>
+		    		<br>
+
+		    		<br>
+			    <input type="submit" value="Plotten">
+			</form>
 			<script>
-				
-					
-				test = function() {
+				$("#nummer").selectmenu({inline: true});
+
+				plot = function() {
+					var id;
+					if (($("#nummer").selectmenu("value")) == "1"){
+						id = "#grafiek1";
+					} else {
+						id = "#grafiek2";
+					};
 					var likes = [];
 					var youtubeAPI = "http://gdata.youtube.com/feeds/api/videos?";
 					$.getJSON( youtubeAPI, {
@@ -37,16 +61,14 @@
 							likes[likes.length] = [item.yt$statistics.viewCount, item.yt$rating.numLikes]
 							//$( "<a href='" + item.snippet.thumbnails.default.url + "'><img src='" + item.snippet.thumbnails.medium.url +"'></a>"  ).appendTo( "#footer" );
 						});
-						console.log(likes);
-						likes = likes.sort(function(a, b) {return a[0] - b[0]});
-						console.log(likes)
-						$.plot("#grafiek", [likes]);
+						console.log(nummer.selected + " - " + id);
+						$.plot(id, [likes]);
 					});
 				};
 			</script>
-			<button onclick="test()">Update</button>
 			<br>
-			<div id="grafiek"></div>
+			<div class="grafiek" id="grafiek1"></div>
+			<div class="grafiek" id="grafiek2"></div>
 		</div>
 
 		<div id='footer'>
