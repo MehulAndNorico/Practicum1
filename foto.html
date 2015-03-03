@@ -52,10 +52,8 @@
     			$("#aantal").spinner("value", 5);
 
 				update = function() {
-					console.log(mode);
-					console.log($("#mode").selectmenu("value"));
 					var modeString;
-					if (mode.selected == "alle"){
+					if (($("#mode option:selected").text()) == "alle"){
 						modeString = "ALL";
 					} else {
 						modeString = "ANY";

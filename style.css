@@ -77,14 +77,13 @@ h3 {
 	color: #222222;
 }
 
-/*Maar op 1 pagina?*/
 .anders {
 	color: #0000F0;
 }
 
 .grafiek {
 	width: 100%;
-	max-width: 40em;
+	max-width:200em;
 	height: 20em;
 }
 

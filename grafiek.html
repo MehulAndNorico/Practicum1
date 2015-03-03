@@ -40,7 +40,7 @@
 
 				plot = function() {
 					var id;
-					if (($("#nummer").selectmenu("value")) == "1"){
+					if (($("#nummer option:selected").text()) == "1"){
 						id = "#grafiek1";
 					} else {
 						id = "#grafiek2";
@@ -52,7 +52,7 @@
 						alt: "json",
 						maxResults: 50,
 						orderby: "viewCount",
-						q: "facebook"
+						q: query.value.replace(" ", "+")
 					})
 					.done(function( data ) {
 						//console.log(data);
