@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="jq/jquery-ui.min.css">
 		<script src="jq/external/jquery/jquery.js"></script>
 		<script src="jq/jquery-ui.min.js"></script>
-		<!-- <script src="jq/jquery-1.11.2.min.js"></script> -->
+		<script src="flot/jquery.flot.js"></script>
 	</head>
 	<body>
 		<div id='header'>
@@ -27,8 +27,8 @@
 						<a href="format.html">Web API</a>
 					</div>
 					<div class='links' id='fb'>
-						<a href="graph.html">Facebook Graph API</a>
-						<a href="voorbeeld.html">Facebook Graph API voorbeelden</a>
+						<a href="graph.html">Graph API</a>
+						<a href="voorbeeld.html">Graph API voorbeelden</a>
 						<a href="overig.html">Overige API's van Facebook</a>
 					</div>
 					<div class='links' id='tw'>
@@ -36,12 +36,12 @@
 						<a href="twitter.html">Widgets</a>
 					</div>
 					<div class='links' id='yt'>
-						<a href="andere.html">API's van andere social networks</a>
+						<a href="andere.html">API</a>
 						<a href='datum.html'>Demo: video's in periode</a>
 						<a href='grafiek.html'>Demo: video statistieken</a>
 					</div>
 					<div class='links' id='fl'>
-						<a href="andere.html">API's van andere social networks</a>
+						<a href="flickr.html">API</a>
 						<a href='foto.html'>Demo: fotobrowser</a>
 					</div>
 				</div>
@@ -106,7 +106,6 @@
 					if (!($("#fl").is(":hover"))){
 						$("#fl").toggle("drop", {duration:400, direction:"right"});
 				}});
-				
 			</script>
 		</div>
 
@@ -122,11 +121,11 @@
 				De hoeveelheid data die op Twitter aan tijdlijnen toegevoegd  wordt is zo groot dat standaard paging benaderingen niet altijd effect werken.<br> 
 				In een ideale wereld is paging erg simpel om te implementeren. We stellen dat er een scenario is waarbij een tijdlijn 10 omgekeerd chronologisch gesorteerde Tweets heeft. Een applicatie probeert om de gehele tijdlijn in twee requests te laden met pages van 5 elementen, waarbij de eerste pagina alseerst wordt gerequest en daarna de tweede. De volgende afbeelding geeft dit scenario weer:
 				<br><br>
-				<img src="Foto/pag1.jpg">
+				<img src="Foto/pag1.jpg" alt="Pagina 1">
 				<br><br>
 				Het probleem van deze methode is dat Twitter tijdlinen constant nieuwe Tweets binnen krijgen. Als bij het vorige geval twee nieuwe tweets toegevoegd worden aan de tijdlijn tussen de request van de twee pagina’s, dan returnt de tweede request twee tweets die we al met bij de vorige call hadden opgehaald:
 				<br><br>
-				<img src="Foto/kk.png">
+				<img src="Foto/kk.png" alt="Probleem">
 				<br><br>
 				Als er vijf of meer Tweets in deze tussentijd worden toegevoegd aan de tijdlijn dan wordt de gehele API request nutteloos.
 				<br><br>
@@ -135,7 +134,7 @@
 				Om het hierboven genoemde probleem op te lossen moet er van een andere soort techniek gebruik gemaakt worden, de techniek genaamd cursoring. In plaats van een tijdlijn relatief van bovenaf te lezen, moet een applicatie de tijdlijn relatief tot de ID’s van Tweets die al verwerkt zijn lezen. Dit is mogelijk door gebruik te maken van de max_id request parameter.<br>
 				Om de max_id correct te gebruiken moet de eerste request van een applicatie aan de tijdlijn alleen een count specificeren. Tijdens het verwerken van requests houdt deze counter het laagste ID dat ontvangen is bij. Dat ID wordt doorgegeven als waarde van de max_id parameter voor de volgende request, die alleen Tweets met een lager ID dan de waarde van max_id ophaald. Merk op dat de Tweet met het correspondeerde ID van max_id ook opnieuw wordt opgehaald.
 				<br><br>
-				<img src="Foto/pag3.jpg">
+				<img src="Foto/pag3.jpg" alt="Pagina 3"> 
 				<br><br>
 				Op deze manier verminder je de hoeveelheid nutteloze requests en weet je altijd zeker dat je niet een Tweet gemist hebt.
 				<br><br>
@@ -157,16 +156,21 @@
 				•	X-Rate-Limit-Reset: De hoeveelheid window die nog over is voordat de rate limit gereset wordt<br><br>
 				Als de rate limit op een eindpunt gehaald wordt dan stuurt de API een HTTP 429 “Too many requests” code terug. Deze respons heeft de volgende body:
 				<br><br>
-				<img src="Foto/error.jpg">
+				<img src="Foto/error.jpg" alt="Foutmelding">
 				<br><br>
-				<h3>Bronnen</h3>
-				<p><a href="https://dev.twitter.com/rest/public">https://dev.twitter.com/rest/public</a></p>
          	</p>
+         	<script>
+				$(".bron").each(function(index){
+					if (index == 0){
+						$("<h3>Bronnen</h3>").appendTo("#content");
+					}
+					$("<a href = #" + this.id + ">" + this.title + "</a><br>").appendTo("#content");
+				})
+			</script>
 		</div>
 
 		<div id='footer'>
-			<p>Deze website is gemaakt door Mehul Mistry (4255704) en Norico Groeneveld (4301358)<p>
-	</body>
+			<p>Deze website is gemaakt door Mehul Mistry (4255704) en Norico Groeneveld (4301358) - <a href="map.html">Sitemap</a></p>
 		</div>
 	</body>
 </html>

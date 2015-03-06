@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Overige API's van Facebook</title>
+		<title>Flickr API</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="stylesheet" href="jq/jquery-ui.min.css">
@@ -10,7 +10,6 @@
 		<script src="flot/jquery.flot.js"></script>
 	</head>
 	<body>
-		<div id="fb-root"></div>
 		<div id='header'>
 			<h1>Social Media API's</h1>
 			<div id='nav'>
@@ -111,71 +110,43 @@
 		</div>
 
 		<div id='content'>
-			<form action="javascript:update()">
-				<label for="query">Zoekterm:</label>
-				<input type="text" id="query" pattern="([a-zA-Z]+)|(([a-zA-Z]+ )+[a-zA-Z]+)" title="Zoekterm(en) gescheiden door een spatie" required>
-					<br><br>
-				<label for="query">Het is mogelijk om meerdere zoektermen op te geven. Plaats er dan een spatie tussen.</label>
-					<br>
-
-					<br>
-				<label for="mode">Zoeken op </label>
-				<select id="mode">
-			     	<option>één</option>
-			     	<option selected="selected">alle</option>
-			 	</select>
-		    	<label for="mode"> zoektermen</label>
-			    	<br>
-
-			    	<br>
-		    	<label for="aantal">Aantal foto's</label>
-		    	<input id="aantal">
-		    		<br>
-
-		    		<br>
-			    <input type="submit">
-			</form>
-			<p id="status"></p>
+			<h2>Flickr AP</h2>
+			<p>
+				De Flickr API<sup class="bron" id="1" title="Documentatie Flickr API"><a href="http://www.cbs.nl/NR/rdonlyres/06A12225-495E-4620-80F6-F2A53E819957/0/20131001b15art.pdf">[1]</a></sup> is gevarieerd in formats en SDK’s.
+			</p>
+			<p>
+				Requests kunnen gedaan worden met REST, XML-RPC en SOAP. Rest werkt via een URL, waardoor je met HTTP GET en POST kan interacteren met de API. XML-RPC en SOAP werken met XML bestandjes met een specifieke opbouw. De response kun je krijgen in REST, XML-RPC, SOAP, JSON en PHP.
+			</p>
+			<p>
+				Voor Flickr zijn er veel SDK’s, maar deze zijn niet officieel. Flickr noemt ze zelf API Kits. Er zijn SDK’s voor de volgende platformen:
+			</p>
+				<ul>
+					<li>ActionScript</li>
+					<li>C</li>
+					<li>Cold Fusion</li>
+					<li>Common Lisp</li>
+					<li>cUrl</li>
+					<li>Delphi</li>
+					<li>Go</li>
+					<li>Java</li>
+					<li>.NET</li>
+					<li>Node.js</li>
+					<li>Objective-C</li>
+					<li>Perl</li>
+					<li>PHP</li>
+					<li>PHP5</li>
+					<li>Python</li>
+					<li>REALbasic</li>
+					<li>Ruby</li>
+				</ul>
 			<script>
-				$("#mode").selectmenu({inline: true});
-				$("#aantal").spinner({
-					inline: true,
-					min: 3,
-					max: 30
-				});
-    			$("#aantal").spinner("value", 5);
-
-				update = function() {
-					var modeString;
-					if (($("#mode option:selected").text()) == "alle"){
-						modeString = "ALL";
-					} else {
-						modeString = "ANY";
-					};
-					var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-					$.getJSON( flickerAPI, {
-						tags: query.value.replace(" ", ","),
-						tagmode: modeString,
-						format: "json"
-					})
-					.done(function( data ) {
-						document.getElementById("fotos").innerHTML = "";
-						$.each( data.items, function( i, item ) {
-							$(
-								"<a href='" + item.link + "' target='_blank'>" +
-								item.author.replace("nobody@flickr.com (", "").replace(")", "") + ": " +
-								item.title + 
-								"<br><img src='" + item.media.m +"'></a><br><br>"
-							).appendTo( "#fotos" );
-							if ( i === 5 ) {
-								return false;
-							}
-						});
-					});
-				};
+				$(".bron").each(function(index){
+					if (index == 0){
+						$("<h3>Bronnen</h3>").appendTo("#content");
+					}
+					$("<a href = #" + this.id + ">" + this.title + "</a><br>").appendTo("#content");
+				})
 			</script>
-			<br>
-			<div id='fotos'></div>
 		</div>
 
 		<div id='footer'>

@@ -4,11 +4,109 @@
 		<title>Facebook Graph API</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" href="jq/jquery-ui.min.css">
+		<script src="jq/external/jquery/jquery.js"></script>
+		<script src="jq/jquery-ui.min.js"></script>
+		<script src="flot/jquery.flot.js"></script>
 	</head>
 	<body>
 		<div id='header'>
-			<h2>NOG AANPASSEN</h2>
-			<button>NOG AANPASSEN</button>
+			<h1>Social Media API's</h1>
+			<div id='nav'>
+				<div id='kopjes'>
+					<div class='kopje' id='algemeen'>Algemeen</div>
+					<div class='kopje' id='facebook'>Facebook</div>
+					<div class='kopje' id='twitter'>Twitter</div>
+					<div class='kopje' id='youtube'>YouTube</div>
+					<div class='kopje' id='flickr'>Flickr</div>
+				</div>
+				<div id="container">
+					<div class='links' id='al'>
+						<a href="index.html">Social Media</a>
+						<a href="hoe.html">API</a>
+						<a href="format.html">Web API</a>
+					</div>
+					<div class='links' id='fb'>
+						<a href="graph.html">Graph API</a>
+						<a href="voorbeeld.html">Graph API voorbeelden</a>
+						<a href="overig.html">Overige API's van Facebook</a>
+					</div>
+					<div class='links' id='tw'>
+						<a href="API.html">API</a>
+						<a href="twitter.html">Widgets</a>
+					</div>
+					<div class='links' id='yt'>
+						<a href="andere.html">API</a>
+						<a href='datum.html'>Demo: video's in periode</a>
+						<a href='grafiek.html'>Demo: video statistieken</a>
+					</div>
+					<div class='links' id='fl'>
+						<a href="flickr.html">API</a>
+						<a href='foto.html'>Demo: fotobrowser</a>
+					</div>
+				</div>
+			</div>
+			<script>
+				$("#algemeen").mouseenter(function() {
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#ov").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle(false);
+					$("#al").toggle("drop", {duration:300});
+				});
+				$("#facebook").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#tw").toggle(false);
+					$("#ov").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle(false);
+					$("#fb").toggle("drop", {duration:300});
+				});
+				$("#twitter").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#fb").toggle(false);
+					$("#ov").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle(false);
+					$("#tw").toggle("drop", {duration:300});
+				});
+				$("#youtube").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#fl").toggle(false);
+					$("#yt").toggle("drop", {duration:300});
+				});
+				$("#flickr").mouseenter(function() {
+					$("#al").toggle(false);
+					$("#fb").toggle(false);
+					$("#tw").toggle(false);
+					$("#yt").toggle(false);
+					$("#fl").toggle("drop", {duration:300});
+				});
+
+				$("#algemeen").mouseleave(function() {
+					if (!($("#al").is(":hover"))){
+						$("#al").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#facebook" ).mouseleave(function() {
+					if (!($("#fb").is(":hover"))){
+						$("#fb").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#twitter").mouseleave(function() {
+					if (!($("#tw").is(":hover"))){
+						$("#tw").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#youtube").mouseleave(function() {
+					if (!($("#yt").is(":hover"))){
+						$("#yt").toggle("drop", {duration:400, direction:"right"});
+				}});
+				$("#flickr").mouseleave(function() {
+					if (!($("#fl").is(":hover"))){
+						$("#fl").toggle("drop", {duration:400, direction:"right"});
+				}});
+			</script>
 		</div>
 
 		<div id='content'>
@@ -16,7 +114,7 @@
 			<p>
 				De belangrijkste API van Facebook heet de Graph API. Graph staat hier niet voor een grafiek, maar voor een graaf. Een graaf is een verzameling van nodes die verbonden zijn met lijnen. Op dezelfde manier is de data van Facebook georganiseerd in objecten die met elkaar verbonden zijn. Nodes kunnen vanalles zijn, van gebruikers en pagina’s tot achievements en betalingen. Elke node heeft een eigen id. Een volledige lijst van de nodes is te vinden in de documentatie van de Graph API<sup class="bron" id="1" title="Documentatie Graph API"><a href="https://developers.facebook.com/docs/graph-api/reference">[1]</a></sup>
 			</p>
-			<img src="foto/graaf.png">
+			<img src="Foto/graaf.png" alt="Graaf">
 			<p>
 				De Graph API werkt met HTML requests. Bijna alle apparaten waarmee je gegevens van Facebook wilt opvragen en gebruiken, zullen beschikken over de mogelijkheid om met HTML te werken. Hierdoor is het op heel veel verschillende apparaten mogelijk om gebruik te maken van de Graph API.
 			</p>
@@ -27,7 +125,7 @@
 				Het opvragen van de gegevens van een node kan simpelweg door de volgende HTTP request: GET graph.facebook.com/IDvanNode
 				De belangrijkste node is natuurlijk de gebruiker. Als je een request doet met als id het id van een gebruiker, zul je in JSON alle gegevens krijgen die toegankelijk zijn met de acces token. Om het makkelijk te maken om gegevens te verkrijgen van de huidige gebruiker, is daar geen id voor nodig. Die zijn namelijk ook bereikbaar via “graph.facebook.com/me”. Als je niet alle gegevens wilt, kun je ook specifieke gegevens opvragen. Dit doe je door achteraan je request “?fields=” toe te voegen, met daarna de namen van de gegevens die je wilt opvragen. Zo kun je met “graph.facebook.com/me?fields=name,birthday” de naam en de geboortedatum van de huidige gebruiker opvragen. Daarnaast krijg je dan ook altijd het id van de gebruiker. Een volledige lijst met de gegevens die opgevraagd kunnen worden is te vinden in de documentatie van de Graph API<sup class="bron" id="2" title="Documentatie gebruiker"><a href="https://developers.facebook.com/docs/graph-api/reference/v2.2/user">[2]</a></sup>.
 			</p>
-			<img src="foto/graaf2.png">
+			<img src="Foto/graaf2.png" alt="Sociale graaf">
 			<p>
 				Het is natuurlijk handig als je ook van bepaalde gegevens naar anderen kunt komen. Bijvoorbeeld als je de profielfoto’s van iemands vrienden wilt gebruiken of statistieken wilt geven over likes en comments van statusupdates. Dit kan door de lijnen tussen de nodes. Als je een node hebt, heeft die naast gewone gegevens ook gegevens van nodes die er mee verbonden zijn. Zo kun je veel verschillende gegevens bereiken en interessante dingen doen.
 			</p>
@@ -37,10 +135,18 @@
 			<p>
 				Een kanttekening is wel dat niet alles zomaar kan. We hebben twee keer gehad dat we een leuk idee hadden en een paar uur besteed hebben aan het uitwerken, maken en testen. Dan kwamen we er achter dat het niet door een fout van ons kwam dat we geen gegevens terugkregen. Hoewel de documentatie van de API op het eerste gezicht laat zien dat je veel gegevens kunt opvragen, bleek het dat veel gegevens niet of niet zomaar opgevraagd kunnen worden. Zo is het bijvoorbeeld niet mogelijk om iemands vrienden op te vragen, tenzij die vrienden zelf de applicatie gebruikt hebben. Ook is voor veel gegevens extra toestemming nodig van Facebook. Dan moet je de toegang tot die gegevens voor je applicatie laten goedkeuren. Daarvoor moet je onder andere wat informatie over je applicatie opgeven. Houdt er dus voordat je begint rekening mee dat je goed moet kijken of je de gegevens die je wilt hebben wel echt kunt krijgen.
 			</p>
+			<script>
+				$(".bron").each(function(index){
+					if (index == 0){
+						$("<h3>Bronnen</h3>").appendTo("#content");
+					}
+					$("<a href = #" + this.id + ">" + this.title + "</a><br>").appendTo("#content");
+				})
+			</script>
 		</div>
 
 		<div id='footer'>
-			<a>NOG AANPASSEN</a>
+			<p>Deze website is gemaakt door Mehul Mistry (4255704) en Norico Groeneveld (4301358) - <a href="map.html">Sitemap</a></p>
 		</div>
 	</body>
 </html>
